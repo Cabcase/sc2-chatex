@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<Desc>
+    <Constant name="ChatEx_RpgCameraButton_Visible" val="true"/>
+    <Constant name="ChatEx_ChatBubblesButton_RightOffset" val="0"/> <!-- Button width = 32 -->
+    <Constant name="ChatEx_CinematicModeButton_Visible" val="true"/>
+    <Constant name="ChatEx_ChatBubblesButton_Visible" val="true"/>
+    <Constant name="ChatEx_ChatBubblesButton_LeftOffset" val="0"/> <!-- Negative value moves the button to the left -->
+    <Constant name="ChatEx_HideChatDisplayButton_Visible" val="true"/>
+</Desc>

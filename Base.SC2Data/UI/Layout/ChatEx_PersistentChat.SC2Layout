@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<Desc>
+    <Frame type="Button" name="PinChatDisplayButtonTemplate" template="ChatEx_Templates/ToggleableIconButtonTemplate">
+        <Tooltip val="@DOCSTR_ChatEx_PinChatDisplay_ButtonTooltip"/>
+        <Shortcut val="Control + Alt + P"/>
+        
+        <Frame type="Image" name="NormalImage">
+            <Texture val="Assets\Textures\sc2_ui_glues_icons_pinhover.dds" layer="2"/>
+            <TextureCoords top="-0.33" left="-0.33" bottom="1.33" right="1.33" layer="2"/>
+
+            <Animation name="OnToggle">
+                <Controller type="Texture" end="Pause" layer="2">
+                    <Key type="Image" time="0" image="Assets\Textures\sc2_ui_glues_icons_unpinhover.dds"/>
+                </Controller>
+            </Animation>
+        </Frame>
+
+        <Frame type="Image" name="HoverImage">
+            <Texture val="Assets\Textures\sc2_ui_glues_icons_pinhover.dds" layer="2"/>
+            <TextureCoords top="-0.33" left="-0.33" bottom="1.33" right="1.33" layer="2"/>
+
+            <Animation name="OnToggle">
+                <Controller type="Texture" end="Pause" layer="2">
+                    <Key type="Image" time="0" image="Assets\Textures\sc2_ui_glues_icons_unpinhover.dds"/>
+                </Controller>
+            </Animation>
+        </Frame>
+    </Frame>
+
+    <Frame type="GameMessageDisplay" name="MakeChatDisplayPersistent" template="ChatEx_DynamicChatDisplay/MakeChatDisplayDynamic">
+        <Alpha val="{$ChatExUI_ChatDisplayContainer/@Alpha}"/>
+        <MaxMessages val="1337"/>
+        <UseTooltip val="false"/>
+
+        <Frame type="Image" name="Background">
+            <Anchor relative="$ChatExUI_ChatDisplayContainer"/>
+            <Unclipped val="true"/>
+            <Visible val="{$ChatExUI_ChatDisplayContainer/PinChatDisplayButton/@Toggled}"/>
+            <LayerColor val="000000"/>
+        </Frame>
+
+        <Frame type="Image" name="BorderImage">
+            <Anchor relative="$ChatExUI_ChatDisplayContainer"/>
+            <Unclipped val="true"/>
+            <Alpha val="0"/>
+            <Texture val="@@UI/StandardListBox"/>
+            <TextureType val="Border"/>
+            <Tiled val="true"/>
+        </Frame>
+
+        <Animation name="ShowBorderImage">
+            <Event event="OnShown" frame="$ChatExUI_ChatBarContainer" action="DirectionForward,Play"/>
+            <Event event="OnHidden" frame="$ChatExUI_ChatBarContainer" action="DirectionReverse,Play"/>
+            <Controller type="Fade" frame="BorderImage" end="Pause">
+                <Key type="Curve" time="0" value="0"/>
+                <Key type="Curve" time="0.1" value="67"/>
+            </Controller>
+            <Controller type="Visibility" frame="BorderImage" end="Pause">
+                <Key type="Bool" time="0" value="false"/>
+                <Key type="Bool" time="0" value="true"/>
+                <Key type="Bool" time="0.1" value="true"/>
+            </Controller>
+            <Controller type="Fade" frame="Background" end="Pause">
+                <Key type="Curve" time="0" value="41"/>
+                <Key type="Curve" time="0.1" value="0"/>
+            </Controller>
+        </Animation>
+
+        <Animation name="DarkenBorderImage">
+            <Event event="OnMouseEnter" action="DirectionForward,Play"/>
+            <Event event="OnDrag" action="DirectionForward,Play"/>
+            <Event event="OnMouseExit" action="DirectionReverse,Play"/>
+            <Controller type="Fade" frame="BorderImage" end="Pause">
+                <Key type="Curve" time="0" value="67"/>
+                <Key type="Curve" time="0.09" value="214"/>
+                <Key type="Curve" time="0.1" value="214"/>
+            </Controller>
+        </Animation>
+
+        <StateGroup name="MessageFade">
+            <DefaultState val="Disabled"/>
+            <State name="Enabled">
+                <When type="Property" toggled="false" frame="$ChatExUI_ChatDisplayContainer/PinChatDisplayButton"/>
+                <When type="Property" hovering="false"/>
+                <When type="Property" dragging="false"/>
+                <Action type="SetProperty" fadeDuration="3000"/>
+            </State>
+            <State name="Disabled">
+                <Action type="SetProperty" messageDuration="0"/>
+            </State>
+        </StateGroup>
+
+        <Frame type="CheckBox" name="IsScrolledStateCheckbox">
+            <Visible val="false"/>
+
+            <StateGroup name="NewMessagesHidden"> 
+                <State name="ShowTooltip">
+                    <When type="AnimationState" NewMessages="Hidden"/>
+                    <Action type="SetProperty" useTooltip="true" frame="$parent"/>
+                </State>
+            </StateGroup>
+
+            <Animation name="SetScrolled">
+                <Event event="OnMouseWheelIncrement" action="Play" frame="$parent"/>
+                <Event event="OnMouseExit" action="Reset" frame="$parent"/>
+                <Controller type="Property" property="Checked" end="Pause">
+                    <Key type="Property" time="0" value="true"/>
+                </Controller>
+            </Animation>
+        </Frame>
+    </Frame>
+
+    <Frame type="Button" name="HideChatDisplayButtonTemplate" template="ChatEx_Templates/ToggleableIconButtonTemplate">
+        <Tooltip val="@DOCSTR_ChatEx_HideChatDisplay_ButtonTooltip"/>
+        <Shortcut val="Control + Alt + H"/>
+        
+        <Frame type="Image" name="NormalImage">
+            <Texture val="Assets\Textures\sc2_ui_glues_icons_silence.dds" layer="2"/>
+            <TextureCoords top="-0.4" left="-0.35" bottom="1.3" right="1.35" layer="2"/>
+        </Frame>
+
+        <Frame type="Image" name="HoverImage">
+            <Texture val="Assets\Textures\sc2_ui_glues_icons_silence.dds" layer="2"/>
+            <TextureCoords top="-0.4" left="-0.35" bottom="1.3" right="1.35" layer="2"/>
+        </Frame>
+
+        <Animation name="HideChatDisplay">
+            <Event event="Toggled" action="DirectionForward,Play"/>
+            <Event event="Normal" action="Reset"/>
+            <Controller type="Fade" frame="$GameUI/UIContainer/FullscreenUpperContainer/ChatDisplay" end="Pause">
+                <Key type="Curve" time="0" value="255"/>
+                <Key type="Curve" time="0.1" value="0"/>
+            </Controller>
+            <Controller type="Visibility" frame="$GameUI/UIContainer/FullscreenUpperContainer/ChatDisplay" end="Pause">
+                <Key type="Bool" time="0" value="true"/>
+                <Key type="Bool" time="0.1" value="false"/>
+            </Controller>
+            <Controller type="Fade" frame="$ChatExUI_ChatDisplayContainer" end="Pause">
+                <Key type="Curve" time="0" value="255"/>
+                <Key type="Curve" time="0.1" value="0"/>
+            </Controller>
+            <Controller type="Visibility" frame="$ChatExUI_ChatDisplayContainer" end="Pause">
+                <Key type="Bool" time="0" value="true"/>
+                <Key type="Bool" time="0.1" value="false"/>
+            </Controller>
+            <Controller type="Fade" frame="$GameUI/ChatExUI/LiveTypingContainer" end="Pause">
+                <Key type="Curve" time="0" value="255"/>
+                <Key type="Curve" time="0.1" value="0"/>
+            </Controller>
+            <Controller type="Visibility" frame="$GameUI/ChatExUI/LiveTypingContainer" end="Pause">
+                <Key type="Bool" time="0" value="true"/>
+                <Key type="Bool" time="0.1" value="false"/>
+            </Controller>
+        </Animation>
+    </Frame>
+</Desc>

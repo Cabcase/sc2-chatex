@@ -1,0 +1,62 @@
+include "TriggerLibs/natives"
+
+//--------------------------------------------------------------------------------------------------
+// Library: ChatEx
+//--------------------------------------------------------------------------------------------------
+// Constants
+const int libCtEx_gv_pLAYER_COUNT = 14;
+const int libCtEx_gv_iDLE_COUNT_LIMIT = 2;
+const int libCtEx_gv_rECENT_MESSAGES_COUNT = 10;
+
+// Variable Declarations
+int libCtEx_gv_chat_bar_edit_box;
+int libCtEx_gv_chat_bar_visible_checkbox;
+fixed libCtEx_gv_cHAT_BUBBLE_FADE_DURATION;
+int libCtEx_gv_chat_bubbles_toggle;
+playergroup libCtEx_gv_players_with_chat_bubbles_enabled;
+int libCtEx_gv_live_typing_typing_label;
+int[libCtEx_gv_pLAYER_COUNT + 1] libCtEx_gv_live_typing_player_labels;
+playergroup libCtEx_gv_players_typing;
+int[libCtEx_gv_pLAYER_COUNT + 1] libCtEx_gv_player_idle_counts;
+int libCtEx_gv_previous_message_button;
+int libCtEx_gv_next_message_button;
+int[libCtEx_gv_pLAYER_COUNT + 1] libCtEx_gv_chat_bar_edit_box_setter_labels;
+string[libCtEx_gv_pLAYER_COUNT + 1][libCtEx_gv_rECENT_MESSAGES_COUNT + 1] libCtEx_gv_recent_messages;
+int[libCtEx_gv_pLAYER_COUNT + 1] libCtEx_gv_recent_message_counters;
+int libCtEx_gv_rpg_camera_toggle;
+playergroup libCtEx_gv_players_with_rpg_camera_enabled;
+unit[libCtEx_gv_pLAYER_COUNT + 1] libCtEx_gv_followed_unit;
+
+// Function Declarations
+void libCtEx_gf_display_chat_bubble (unit lp_unit, string lp_message);
+int libCtEx_gf_string_length_without_xml (string lp_string);
+void libCtEx_gf_mark_player_as_typing (int lp_player);
+void libCtEx_gf_unmark_player_as_typing (int lp_player);
+void libCtEx_gf_update_live_typing_labels ();
+void libCtEx_gf_push_recent_message (string lp_message, int lp_player);
+void libCtEx_gf_load_recent_message (int lp_message_index, int lp_player);
+void libCtEx_gf_clear_recent_message_counter (int lp_player);
+void libCtEx_gf_update_recent_messages_dialogs (int lp_player);
+void libCtEx_gf_update_camera_follow (int lp_player);
+void libCtEx_gf_stop_camera_follow (int lp_player);
+
+// Trigger Declarations
+trigger libCtEx_gt_hookup_common_dialogs;
+trigger libCtEx_gt_chat_bar_hidden;
+trigger libCtEx_gt_hookup_chat_bubbles_toggle;
+trigger libCtEx_gt_create_chat_bubble;
+trigger libCtEx_gt_toggle_chat_bubbles;
+trigger libCtEx_gt_hookup_live_typing_dialog_items;
+trigger libCtEx_gt_player_types_in_chat_bar;
+trigger libCtEx_gt_idle_check;
+trigger libCtEx_gt_init_recent_messages;
+trigger libCtEx_gt_load_previous_message;
+trigger libCtEx_gt_load_next_message;
+trigger libCtEx_gt_player_sends_message;
+trigger libCtEx_gt_hookup_rpg_camera_toggle;
+trigger libCtEx_gt_toggle_rpg_camera;
+trigger libCtEx_gt_player_selects_new_unit;
+
+// Library Initialization
+void libCtEx_InitVariables ();
+

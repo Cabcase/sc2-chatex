@@ -1,0 +1,751 @@
+include "TriggerLibs/NativeLib"
+
+include "LibCtEx_h"
+
+//--------------------------------------------------------------------------------------------------
+// Library: ChatEx
+//--------------------------------------------------------------------------------------------------
+// External Library Initialization
+void libCtEx_InitLibraries () {
+    libNtve_InitVariables();
+}
+
+// Variable Initialization
+bool libCtEx_InitVariables_completed = false;
+
+void libCtEx_InitVariables () {
+    int init_i;
+    int init_j;
+
+    if (libCtEx_InitVariables_completed) {
+        return;
+    }
+
+    libCtEx_InitVariables_completed = true;
+
+    libCtEx_gv_chat_bar_edit_box = c_invalidDialogControlId;
+    libCtEx_gv_chat_bar_visible_checkbox = c_invalidDialogControlId;
+    libCtEx_gv_cHAT_BUBBLE_FADE_DURATION = 1.0;
+    libCtEx_gv_chat_bubbles_toggle = c_invalidDialogControlId;
+    libCtEx_gv_players_with_chat_bubbles_enabled = PlayerGroupEmpty();
+    libCtEx_gv_live_typing_typing_label = c_invalidDialogControlId;
+    for (init_i = 0; init_i <= libCtEx_gv_pLAYER_COUNT; init_i += 1) {
+        libCtEx_gv_live_typing_player_labels[init_i] = c_invalidDialogControlId;
+    }
+    libCtEx_gv_players_typing = PlayerGroupEmpty();
+    libCtEx_gv_previous_message_button = c_invalidDialogControlId;
+    libCtEx_gv_next_message_button = c_invalidDialogControlId;
+    for (init_i = 0; init_i <= libCtEx_gv_pLAYER_COUNT; init_i += 1) {
+        libCtEx_gv_chat_bar_edit_box_setter_labels[init_i] = c_invalidDialogControlId;
+    }
+    for (init_i = 0; init_i <= libCtEx_gv_pLAYER_COUNT; init_i += 1) {
+        for (init_j = 0; init_j <= libCtEx_gv_rECENT_MESSAGES_COUNT; init_j += 1) {
+            libCtEx_gv_recent_messages[init_i][init_j] = "";
+        }
+    }
+    libCtEx_gv_rpg_camera_toggle = c_invalidDialogControlId;
+    libCtEx_gv_players_with_rpg_camera_enabled = PlayerGroupEmpty();
+}
+
+// Functions
+trigger auto_libCtEx_gf_display_chat_bubble_Trigger = null;
+unit auto_libCtEx_gf_display_chat_bubble_lp_unit;
+string auto_libCtEx_gf_display_chat_bubble_lp_message;
+
+void libCtEx_gf_display_chat_bubble (unit lp_unit, string lp_message) {
+    auto_libCtEx_gf_display_chat_bubble_lp_unit = lp_unit;
+    auto_libCtEx_gf_display_chat_bubble_lp_message = lp_message;
+
+    if (auto_libCtEx_gf_display_chat_bubble_Trigger == null) {
+        auto_libCtEx_gf_display_chat_bubble_Trigger = TriggerCreate("auto_libCtEx_gf_display_chat_bubble_TriggerFunc");
+    }
+
+    TriggerExecute(auto_libCtEx_gf_display_chat_bubble_Trigger, false, false);
+}
+
+bool auto_libCtEx_gf_display_chat_bubble_TriggerFunc (bool testConds, bool runActions) {
+    unit lp_unit = auto_libCtEx_gf_display_chat_bubble_lp_unit;
+    string lp_message = auto_libCtEx_gf_display_chat_bubble_lp_message;
+
+    // Variable Declarations
+    const string lv_cHAT_BUBBLE_FONT = "ChatEx_ChatBubbles";
+    const int lv_cHAT_BUBBLE_FONT_SIZE = 16;
+    const fixed lv_tEXT_TAG_MAX_WIDTH = (582.65/1600*100);
+    int lv_message_length_without_xml;
+    fixed lv_message_duration;
+    string lv_text_tag_data_table_key;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+    lv_message_length_without_xml = libCtEx_gf_string_length_without_xml(lp_message);
+    lv_message_duration = (5+lv_message_length_without_xml/(4.8+1)/200*60);
+    lv_text_tag_data_table_key = ("ChatEx/Units/" + IntToString(UnitGetTag(lp_unit)) + "/TextTag");
+
+    // Implementation
+    lp_message = StringReplaceWord(lp_message, "(", ("<s val=\"" + lv_cHAT_BUBBLE_FONT + "_Italic\">("), c_stringReplaceAll, c_stringCase);
+    lp_message = StringReplaceWord(lp_message, ")", ")</s>", c_stringReplaceAll, c_stringCase);
+    TextTagCreate(StringToText(("<s val=\"" + lv_cHAT_BUBBLE_FONT + "\">" + lp_message + "</s>")), lv_cHAT_BUBBLE_FONT_SIZE, UnitGetPosition(lp_unit), 0.0, false, false, libCtEx_gv_players_with_chat_bubbles_enabled);
+    if ((lv_message_length_without_xml > 66)) {
+        TextTagSetMaxSize(TextTagLastCreated(), lv_tEXT_TAG_MAX_WIDTH, 0.0);
+    }
+
+    TextTagSetBackgroundImage(TextTagLastCreated(), "Assets\\Textures\\ui_battlenet_glue_listboxframe.dds", true);
+    TextTagSetBackgroundBorderSize(TextTagLastCreated(), 1.0, 1.0);
+    TextTagShowBackground(TextTagLastCreated(), true);
+    TextTagAttachToUnitPoint(TextTagLastCreated(), lp_unit, "Ref_Overhead", 0, 1);
+    TextTagSetAlignment(TextTagLastCreated(), c_alignCenter, c_alignBottom);
+    TextTagSetTextAlignment(TextTagLastCreated(), c_alignLeft, c_alignTop);
+    if ((libNtve_gf_ValueFromDataTableTextTag(true, lv_text_tag_data_table_key) != c_textTagNone)) {
+        TextTagDestroy(libNtve_gf_ValueFromDataTableTextTag(true, lv_text_tag_data_table_key));
+    }
+
+    libNtve_gf_SaveDataTableValueTextTag(true, lv_text_tag_data_table_key, TextTagLastCreated());
+    TextTagSetTime(TextTagLastCreated(), c_textTagTimeDuration, lv_message_duration);
+    TextTagSetTime(TextTagLastCreated(), c_textTagTimeFadeOut, (lv_message_duration-libCtEx_gv_cHAT_BUBBLE_FADE_DURATION));
+    TextTagSetTime(TextTagLastCreated(), c_textTagTimeFadeDuration, libCtEx_gv_cHAT_BUBBLE_FADE_DURATION);
+    TextTagShow(TextTagLastCreated(), libCtEx_gv_players_with_chat_bubbles_enabled, true);
+    Wait(lv_message_duration, c_timeReal);
+    if ((libNtve_gf_ValueFromDataTableTextTag(true, lv_text_tag_data_table_key) == TextTagLastCreated())) {
+        DataTableValueRemove(true, lv_text_tag_data_table_key);
+    }
+
+    return true;
+}
+
+int libCtEx_gf_string_length_without_xml (string lp_string) {
+    // Automatic Variable Declarations
+    // Implementation
+    while ((StringContains(lp_string, "<", c_stringAnywhere, c_stringCase) == true) && (StringContains(lp_string, ">", c_stringAnywhere, c_stringCase) == true)) {
+        lp_string = (StringSub(lp_string, 1, (StringFind(lp_string, "<", c_stringCase)-1)) + StringSub(lp_string, (StringFind(lp_string, ">", c_stringCase)+1), StringLength(lp_string)));
+    }
+    return StringLength(lp_string);
+}
+
+void libCtEx_gf_mark_player_as_typing (int lp_player) {
+    // Automatic Variable Declarations
+    // Implementation
+    libCtEx_gv_player_idle_counts[lp_player] = 0;
+    PlayerGroupAdd(libCtEx_gv_players_typing, lp_player);
+    libCtEx_gf_update_live_typing_labels();
+}
+
+void libCtEx_gf_unmark_player_as_typing (int lp_player) {
+    // Automatic Variable Declarations
+    // Implementation
+    if ((PlayerGroupHasPlayer(libCtEx_gv_players_typing, lp_player) == true)) {
+        PlayerGroupRemove(libCtEx_gv_players_typing, lp_player);
+        libCtEx_gf_update_live_typing_labels();
+    }
+
+}
+
+void libCtEx_gf_update_live_typing_labels () {
+    // Variable Declarations
+    int lv_player_index;
+    int lv_label_index;
+
+    // Automatic Variable Declarations
+    playergroup auto3D03889E_g;
+    int auto1A08101A_ae;
+    const int auto1A08101A_ai = 1;
+
+    // Variable Initialization
+
+    // Implementation
+    if ((PlayerGroupCount(libCtEx_gv_players_typing) > 0)) {
+        DialogControlSetVisible(libCtEx_gv_live_typing_typing_label, PlayerGroupAll(), true);
+    }
+    else {
+        DialogControlSetVisible(libCtEx_gv_live_typing_typing_label, PlayerGroupAll(), false);
+    }
+    auto3D03889E_g = libCtEx_gv_players_typing;
+    lv_player_index = -1;
+    while (true) {
+        lv_player_index = PlayerGroupNextPlayer(auto3D03889E_g, lv_player_index);
+        if (lv_player_index < 0) { break; }
+        libNtve_gf_SetDialogItemText(libCtEx_gv_live_typing_player_labels[lv_label_index], TextWithColor(PlayerName(lv_player_index), libNtve_gf_ConvertPlayerColorToColor(PlayerGetColorIndex(lv_player_index, false))), PlayerGroupAll());
+        DialogControlSetVisible(libCtEx_gv_live_typing_player_labels[lv_label_index], PlayerGroupAll(), true);
+        DialogControlFadeTransparency(libCtEx_gv_live_typing_player_labels[lv_label_index], PlayerGroupAll(), 0.0, ((libCtEx_gv_player_idle_counts[lv_player_index] - 1) * (100 / libCtEx_gv_iDLE_COUNT_LIMIT)));
+        lv_label_index = (lv_label_index + 1);
+    }
+    auto1A08101A_ae = (libCtEx_gv_pLAYER_COUNT - 1);
+    lv_label_index = lv_label_index;
+    for ( ; ( (auto1A08101A_ai >= 0 && lv_label_index <= auto1A08101A_ae) || (auto1A08101A_ai < 0 && lv_label_index >= auto1A08101A_ae) ) ; lv_label_index += auto1A08101A_ai ) {
+        DialogControlSetVisible(libCtEx_gv_live_typing_player_labels[lv_label_index], PlayerGroupAll(), false);
+    }
+}
+
+void libCtEx_gf_push_recent_message (string lp_message, int lp_player) {
+    // Variable Declarations
+    int lv_message_index;
+
+    // Automatic Variable Declarations
+    const int auto12B9FF7E_ae = 2;
+    const int auto12B9FF7E_ai = -1;
+
+    // Variable Initialization
+    lv_message_index = libCtEx_gv_rECENT_MESSAGES_COUNT;
+
+    // Implementation
+    lv_message_index = libCtEx_gv_rECENT_MESSAGES_COUNT;
+    for ( ; ( (auto12B9FF7E_ai >= 0 && lv_message_index <= auto12B9FF7E_ae) || (auto12B9FF7E_ai < 0 && lv_message_index >= auto12B9FF7E_ae) ) ; lv_message_index += auto12B9FF7E_ai ) {
+        libCtEx_gv_recent_messages[EventPlayer()][lv_message_index] = libCtEx_gv_recent_messages[EventPlayer()][(lv_message_index-1)];
+    }
+    libCtEx_gv_recent_messages[EventPlayer()][1] = lp_message;
+    libCtEx_gf_update_recent_messages_dialogs(EventPlayer());
+}
+
+void libCtEx_gf_load_recent_message (int lp_message_index, int lp_player) {
+    // Variable Declarations
+    string lv_message;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+    lv_message = libCtEx_gv_recent_messages[lp_player][lp_message_index];
+
+    // Implementation
+    if ((StringSub(lv_message, 1, 1) == "@")) {
+        lv_message = (" " + lv_message);
+    }
+
+    libNtve_gf_SetDialogItemText(libCtEx_gv_chat_bar_edit_box_setter_labels[lp_player], StringToText(lv_message), PlayerGroupSingle(lp_player));
+    libCtEx_gv_recent_message_counters[lp_player] = lp_message_index;
+    libCtEx_gf_update_recent_messages_dialogs(lp_player);
+}
+
+void libCtEx_gf_clear_recent_message_counter (int lp_player) {
+    // Automatic Variable Declarations
+    // Implementation
+    libCtEx_gv_recent_message_counters[lp_player] = 0;
+    libCtEx_gf_update_recent_messages_dialogs(lp_player);
+}
+
+void libCtEx_gf_update_recent_messages_dialogs (int lp_player) {
+    // Automatic Variable Declarations
+    // Implementation
+    if ((((libCtEx_gv_recent_message_counters[lp_player] >= 0) && (libCtEx_gv_recent_message_counters[lp_player] <= (libCtEx_gv_rECENT_MESSAGES_COUNT-1))) == true) && (libCtEx_gv_recent_messages[lp_player][(libCtEx_gv_recent_message_counters[lp_player]+1)] != "")) {
+        DialogControlSetVisible(libCtEx_gv_previous_message_button, PlayerGroupSingle(lp_player), true);
+    }
+    else {
+        DialogControlSetVisible(libCtEx_gv_previous_message_button, PlayerGroupSingle(lp_player), false);
+    }
+    if ((((libCtEx_gv_recent_message_counters[lp_player] >= 1) && (libCtEx_gv_recent_message_counters[lp_player] <= libCtEx_gv_rECENT_MESSAGES_COUNT)) == true)) {
+        DialogControlSetVisible(libCtEx_gv_next_message_button, PlayerGroupSingle(lp_player), true);
+    }
+    else {
+        DialogControlSetVisible(libCtEx_gv_next_message_button, PlayerGroupSingle(lp_player), false);
+    }
+}
+
+void libCtEx_gf_update_camera_follow (int lp_player) {
+    // Automatic Variable Declarations
+    // Implementation
+    if ((libCtEx_gv_followed_unit[lp_player] != null)) {
+        libCtEx_gf_stop_camera_follow(lp_player);
+    }
+
+    libCtEx_gv_followed_unit[lp_player] = UnitGroupUnit(UnitSubgroupSelected(lp_player), 1);
+    if ((libCtEx_gv_followed_unit[lp_player] != null)) {
+        CameraFollowUnitGroup(lp_player, libNtve_gf_ConvertUnitToUnitGroup(libCtEx_gv_followed_unit[lp_player]), true, false);
+    }
+
+}
+
+void libCtEx_gf_stop_camera_follow (int lp_player) {
+    // Automatic Variable Declarations
+    // Implementation
+    CameraFollowUnitGroup(lp_player, libNtve_gf_ConvertUnitToUnitGroup(libCtEx_gv_followed_unit[lp_player]), false, false);
+    libCtEx_gv_followed_unit[lp_player] = null;
+}
+
+// Triggers
+//--------------------------------------------------------------------------------------------------
+// Trigger: hookup_common_dialogs
+//--------------------------------------------------------------------------------------------------
+bool libCtEx_gt_hookup_common_dialogs_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    DialogControlHookupStandard(c_triggerControlTypeEditBox, "UIContainer/FullscreenUpperContainer/ChatBar/ChatEditBox");
+    libCtEx_gv_chat_bar_edit_box = DialogControlLastCreated();
+    DialogControlHookupStandard(c_triggerControlTypeCheckBox, "ChatExUI/ChatBarVisibleStateCheckbox");
+    libCtEx_gv_chat_bar_visible_checkbox = DialogControlLastCreated();
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libCtEx_gt_hookup_common_dialogs_Init () {
+    libCtEx_gt_hookup_common_dialogs = TriggerCreate("libCtEx_gt_hookup_common_dialogs_Func");
+    TriggerAddEventMapInit(libCtEx_gt_hookup_common_dialogs);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: chat_bar_hidden
+//--------------------------------------------------------------------------------------------------
+bool libCtEx_gt_chat_bar_hidden_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Conditions
+    if (testConds) {
+        if (!((EventDialogControl() == libCtEx_gv_chat_bar_visible_checkbox))) {
+            return false;
+        }
+
+        if (!((libNtve_gf_DialogItemIsChecked(EventDialogControl(), EventPlayer()) == false))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    libCtEx_gf_unmark_player_as_typing(EventPlayer());
+    libCtEx_gf_clear_recent_message_counter(EventPlayer());
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libCtEx_gt_chat_bar_hidden_Init () {
+    libCtEx_gt_chat_bar_hidden = TriggerCreate("libCtEx_gt_chat_bar_hidden_Func");
+    TriggerAddEventDialogControl(libCtEx_gt_chat_bar_hidden, c_playerAny, c_invalidDialogControlId, c_triggerControlEventTypeChecked);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: hookup_chat_bubbles_toggle
+//--------------------------------------------------------------------------------------------------
+bool libCtEx_gt_hookup_chat_bubbles_toggle_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    DialogControlHookupStandard(c_triggerControlTypeButton, "ChatExUI/ChatBarContainer/ChatBubblesButton");
+    libCtEx_gv_chat_bubbles_toggle = DialogControlLastCreated();
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libCtEx_gt_hookup_chat_bubbles_toggle_Init () {
+    libCtEx_gt_hookup_chat_bubbles_toggle = TriggerCreate("libCtEx_gt_hookup_chat_bubbles_toggle_Func");
+    TriggerAddEventMapInit(libCtEx_gt_hookup_chat_bubbles_toggle);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: create_chat_bubble
+//--------------------------------------------------------------------------------------------------
+bool libCtEx_gt_create_chat_bubble_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Conditions
+    if (testConds) {
+        if (!((UnitGroupCount(UnitGroupFilterPlayer(UnitSubgroupSelected(EventPlayer()), EventPlayer(), 0), c_unitCountAlive) >= 1))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    libCtEx_gf_display_chat_bubble(UnitGroupUnit(UnitSubgroupSelected(EventPlayer()), 1), EventChatMessage(false));
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libCtEx_gt_create_chat_bubble_Init () {
+    libCtEx_gt_create_chat_bubble = TriggerCreate("libCtEx_gt_create_chat_bubble_Func");
+    TriggerAddEventChatMessage(libCtEx_gt_create_chat_bubble, c_playerAny, "", false);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: toggle_chat_bubbles
+//--------------------------------------------------------------------------------------------------
+bool libCtEx_gt_toggle_chat_bubbles_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Conditions
+    if (testConds) {
+        if (!((EventDialogControl() == libCtEx_gv_chat_bubbles_toggle))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    if ((PlayerGroupHasPlayer(libCtEx_gv_players_with_chat_bubbles_enabled, EventPlayer()) == false)) {
+        PlayerGroupAdd(libCtEx_gv_players_with_chat_bubbles_enabled, EventPlayer());
+        libNtve_gf_SetDialogItemToggled(libCtEx_gv_chat_bubbles_toggle, true, PlayerGroupSingle(EventPlayer()));
+    }
+    else {
+        PlayerGroupRemove(libCtEx_gv_players_with_chat_bubbles_enabled, EventPlayer());
+        libNtve_gf_SetDialogItemToggled(libCtEx_gv_chat_bubbles_toggle, false, PlayerGroupSingle(EventPlayer()));
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libCtEx_gt_toggle_chat_bubbles_Init () {
+    libCtEx_gt_toggle_chat_bubbles = TriggerCreate("libCtEx_gt_toggle_chat_bubbles_Func");
+    TriggerAddEventDialogControl(libCtEx_gt_toggle_chat_bubbles, c_playerAny, c_invalidDialogControlId, c_triggerControlEventTypeClick);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: hookup_live_typing_dialog_items
+//--------------------------------------------------------------------------------------------------
+bool libCtEx_gt_hookup_live_typing_dialog_items_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    int lv_label_index;
+
+    // Automatic Variable Declarations
+    int autoB8F8CC5F_ae;
+    const int autoB8F8CC5F_ai = 1;
+
+    // Variable Initialization
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    DialogControlHookupStandard(c_triggerControlTypeLabel, "ChatExUI/LiveTypingContainer/TypingLabel");
+    libCtEx_gv_live_typing_typing_label = DialogControlLastCreated();
+    autoB8F8CC5F_ae = (libCtEx_gv_pLAYER_COUNT - 1);
+    lv_label_index = 0;
+    for ( ; ( (autoB8F8CC5F_ai >= 0 && lv_label_index <= autoB8F8CC5F_ae) || (autoB8F8CC5F_ai < 0 && lv_label_index >= autoB8F8CC5F_ae) ) ; lv_label_index += autoB8F8CC5F_ai ) {
+        DialogControlHookupStandard(c_triggerControlTypeLabel, ("ChatExUI/LiveTypingContainer/PlayerLabel" + IntToString(lv_label_index)));
+        libCtEx_gv_live_typing_player_labels[lv_label_index] = DialogControlLastCreated();
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libCtEx_gt_hookup_live_typing_dialog_items_Init () {
+    libCtEx_gt_hookup_live_typing_dialog_items = TriggerCreate("libCtEx_gt_hookup_live_typing_dialog_items_Func");
+    TriggerAddEventMapInit(libCtEx_gt_hookup_live_typing_dialog_items);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: player_types_in_chat_bar
+//--------------------------------------------------------------------------------------------------
+bool libCtEx_gt_player_types_in_chat_bar_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Conditions
+    if (testConds) {
+        if (!((EventDialogControl() == libCtEx_gv_chat_bar_edit_box))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    if ((libNtve_gf_DialogItemEditValue(EventDialogControl(), EventPlayer()) != "")) {
+        libCtEx_gf_mark_player_as_typing(EventPlayer());
+    }
+
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libCtEx_gt_player_types_in_chat_bar_Init () {
+    libCtEx_gt_player_types_in_chat_bar = TriggerCreate("libCtEx_gt_player_types_in_chat_bar_Func");
+    TriggerAddEventDialogControl(libCtEx_gt_player_types_in_chat_bar, c_playerAny, c_invalidDialogControlId, c_triggerControlEventTypeTextChanged);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: idle_check
+//--------------------------------------------------------------------------------------------------
+bool libCtEx_gt_idle_check_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    int lv_label_index;
+    int lv_player_index;
+
+    // Automatic Variable Declarations
+    playergroup auto04C321FE_g;
+
+    // Variable Initialization
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    auto04C321FE_g = libCtEx_gv_players_typing;
+    lv_player_index = -1;
+    while (true) {
+        lv_player_index = PlayerGroupNextPlayer(auto04C321FE_g, lv_player_index);
+        if (lv_player_index < 0) { break; }
+        libCtEx_gv_player_idle_counts[lv_player_index] = (libCtEx_gv_player_idle_counts[lv_player_index] + 1);
+        if ((libCtEx_gv_player_idle_counts[lv_player_index] > libCtEx_gv_iDLE_COUNT_LIMIT)) {
+            PlayerGroupRemove(libCtEx_gv_players_typing, lv_player_index);
+        }
+
+        libCtEx_gf_update_live_typing_labels();
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libCtEx_gt_idle_check_Init () {
+    libCtEx_gt_idle_check = TriggerCreate("libCtEx_gt_idle_check_Func");
+    TriggerAddEventTimePeriodic(libCtEx_gt_idle_check, 7.0, c_timeGame);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: init_recent_messages
+//--------------------------------------------------------------------------------------------------
+bool libCtEx_gt_init_recent_messages_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    int lv_player;
+
+    // Automatic Variable Declarations
+    playergroup auto32CE9EF7_g;
+
+    // Variable Initialization
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    DialogControlHookupStandard(c_triggerControlTypeButton, "ChatExUI/ChatBarContainer/RecentMessagesButtonPair/PreviousMessageButton");
+    libCtEx_gv_previous_message_button = DialogControlLastCreated();
+    DialogControlHookupStandard(c_triggerControlTypeButton, "ChatExUI/ChatBarContainer/RecentMessagesButtonPair/NextMessageButton");
+    libCtEx_gv_next_message_button = DialogControlLastCreated();
+    auto32CE9EF7_g = PlayerGroupActive();
+    lv_player = -1;
+    while (true) {
+        lv_player = PlayerGroupNextPlayer(auto32CE9EF7_g, lv_player);
+        if (lv_player < 0) { break; }
+        DialogControlSetAnimationState(libCtEx_gv_chat_bar_edit_box, PlayerGroupSingle(lv_player), "BindTextTo", ("Label" + IntToString(lv_player)));
+        DialogControlHookupStandard(c_triggerControlTypeLabel, ("ChatExUI/TextSetterLabels/Label" + IntToString(lv_player)));
+        libCtEx_gv_chat_bar_edit_box_setter_labels[lv_player] = DialogControlLastCreated();
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libCtEx_gt_init_recent_messages_Init () {
+    libCtEx_gt_init_recent_messages = TriggerCreate("libCtEx_gt_init_recent_messages_Func");
+    TriggerAddEventMapInit(libCtEx_gt_init_recent_messages);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: load_previous_message
+//--------------------------------------------------------------------------------------------------
+bool libCtEx_gt_load_previous_message_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    int lv_field_index;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+
+    // Conditions
+    if (testConds) {
+        if (!((EventDialogControl() == libCtEx_gv_previous_message_button))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    if ((libCtEx_gv_recent_message_counters[EventPlayer()] == 0)) {
+        libCtEx_gv_recent_messages[EventPlayer()][0] = libNtve_gf_DialogItemEditValue(libCtEx_gv_chat_bar_edit_box, EventPlayer());
+    }
+
+    libCtEx_gf_load_recent_message((libCtEx_gv_recent_message_counters[EventPlayer()]+1), EventPlayer());
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libCtEx_gt_load_previous_message_Init () {
+    libCtEx_gt_load_previous_message = TriggerCreate("libCtEx_gt_load_previous_message_Func");
+    TriggerAddEventDialogControl(libCtEx_gt_load_previous_message, c_playerAny, c_invalidDialogControlId, c_triggerControlEventTypeClick);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: load_next_message
+//--------------------------------------------------------------------------------------------------
+bool libCtEx_gt_load_next_message_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Conditions
+    if (testConds) {
+        if (!((EventDialogControl() == libCtEx_gv_next_message_button))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    libCtEx_gf_load_recent_message((libCtEx_gv_recent_message_counters[EventPlayer()]-1), EventPlayer());
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libCtEx_gt_load_next_message_Init () {
+    libCtEx_gt_load_next_message = TriggerCreate("libCtEx_gt_load_next_message_Func");
+    TriggerAddEventDialogControl(libCtEx_gt_load_next_message, c_playerAny, c_invalidDialogControlId, c_triggerControlEventTypeClick);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: player_sends_message
+//--------------------------------------------------------------------------------------------------
+bool libCtEx_gt_player_sends_message_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    libCtEx_gf_push_recent_message(EventChatMessage(false), EventPlayer());
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libCtEx_gt_player_sends_message_Init () {
+    libCtEx_gt_player_sends_message = TriggerCreate("libCtEx_gt_player_sends_message_Func");
+    TriggerAddEventChatMessage(libCtEx_gt_player_sends_message, c_playerAny, "", false);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: hookup_rpg_camera_toggle
+//--------------------------------------------------------------------------------------------------
+bool libCtEx_gt_hookup_rpg_camera_toggle_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    DialogControlHookupStandard(c_triggerControlTypeButton, "ChatExUI/ChatBarContainer/RpgCameraButton");
+    libCtEx_gv_rpg_camera_toggle = DialogControlLastCreated();
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libCtEx_gt_hookup_rpg_camera_toggle_Init () {
+    libCtEx_gt_hookup_rpg_camera_toggle = TriggerCreate("libCtEx_gt_hookup_rpg_camera_toggle_Func");
+    TriggerAddEventMapInit(libCtEx_gt_hookup_rpg_camera_toggle);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: toggle_rpg_camera
+//--------------------------------------------------------------------------------------------------
+bool libCtEx_gt_toggle_rpg_camera_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Conditions
+    if (testConds) {
+        if (!((EventDialogControl() == libCtEx_gv_rpg_camera_toggle))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    if ((PlayerGroupHasPlayer(libCtEx_gv_players_with_rpg_camera_enabled, EventPlayer()) == false)) {
+        PlayerGroupAdd(libCtEx_gv_players_with_rpg_camera_enabled, EventPlayer());
+        libCtEx_gf_update_camera_follow(EventPlayer());
+        CameraUseHeightSmoothing(EventPlayer(), true);
+        CameraUseHeightDisplacement(EventPlayer(), true);
+        CameraSetMouseRotates(EventPlayer(), true);
+        libNtve_gf_SetDialogItemToggled(libCtEx_gv_rpg_camera_toggle, true, PlayerGroupSingle(EventPlayer()));
+    }
+    else {
+        PlayerGroupRemove(libCtEx_gv_players_with_rpg_camera_enabled, EventPlayer());
+        libCtEx_gf_stop_camera_follow(EventPlayer());
+        CameraUseHeightSmoothing(EventPlayer(), false);
+        CameraUseHeightDisplacement(EventPlayer(), false);
+        CameraSetMouseRotates(EventPlayer(), false);
+        libNtve_gf_SetDialogItemToggled(libCtEx_gv_rpg_camera_toggle, false, PlayerGroupSingle(EventPlayer()));
+        CameraApplyInfo(EventPlayer(), CameraInfoDefault(), 2.0, -1, 10.0, false);
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libCtEx_gt_toggle_rpg_camera_Init () {
+    libCtEx_gt_toggle_rpg_camera = TriggerCreate("libCtEx_gt_toggle_rpg_camera_Func");
+    TriggerAddEventDialogControl(libCtEx_gt_toggle_rpg_camera, c_playerAny, c_invalidDialogControlId, c_triggerControlEventTypeClick);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: player_selects_new_unit
+//--------------------------------------------------------------------------------------------------
+bool libCtEx_gt_player_selects_new_unit_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Conditions
+    if (testConds) {
+        if (!((PlayerGroupHasPlayer(libCtEx_gv_players_with_rpg_camera_enabled, EventPlayer()) == true))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    libCtEx_gf_update_camera_follow(EventPlayer());
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libCtEx_gt_player_selects_new_unit_Init () {
+    libCtEx_gt_player_selects_new_unit = TriggerCreate("libCtEx_gt_player_selects_new_unit_Func");
+    TriggerAddEventUnitSelected(libCtEx_gt_player_selects_new_unit, null, c_playerAny, true);
+    TriggerAddEventUnitSelected(libCtEx_gt_player_selects_new_unit, null, c_playerAny, false);
+}
+
+void libCtEx_InitTriggers () {
+    libCtEx_gt_hookup_common_dialogs_Init();
+    libCtEx_gt_chat_bar_hidden_Init();
+    libCtEx_gt_hookup_chat_bubbles_toggle_Init();
+    libCtEx_gt_create_chat_bubble_Init();
+    libCtEx_gt_toggle_chat_bubbles_Init();
+    libCtEx_gt_hookup_live_typing_dialog_items_Init();
+    libCtEx_gt_player_types_in_chat_bar_Init();
+    libCtEx_gt_idle_check_Init();
+    libCtEx_gt_init_recent_messages_Init();
+    libCtEx_gt_load_previous_message_Init();
+    libCtEx_gt_load_next_message_Init();
+    libCtEx_gt_player_sends_message_Init();
+    libCtEx_gt_hookup_rpg_camera_toggle_Init();
+    libCtEx_gt_toggle_rpg_camera_Init();
+    libCtEx_gt_player_selects_new_unit_Init();
+}
+
+//--------------------------------------------------------------------------------------------------
+// Library Initialization
+//--------------------------------------------------------------------------------------------------
+bool libCtEx_InitLib_completed = false;
+
+void libCtEx_InitLib () {
+    if (libCtEx_InitLib_completed) {
+        return;
+    }
+
+    libCtEx_InitLib_completed = true;
+
+    libCtEx_InitLibraries();
+    libCtEx_InitVariables();
+    libCtEx_InitTriggers();
+}
+

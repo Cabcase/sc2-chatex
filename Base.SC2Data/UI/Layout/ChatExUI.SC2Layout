@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<Desc>
+    <Frame type="GameUI" name="GameUI" file="GameUI">
+        <Frame type="Frame" name="ChatExUI">
+            <Anchor relative="$parent"/>
+
+            <Frame type="Frame" name="CinematicModeHoverAreas" template="ChatEx_CinematicMode/HoverAreasTemplate"/>
+            <Frame type="Frame" name="TextSetterLabels" template="ChatEx_RecentMessages/TextSetterLabelsTemplate"/>
+            <Frame type="CheckBox" name="ChatBarVisibleStateCheckbox">
+                <Visible val="false"/>
+                <Checked val="{$GameUI_ChatBar/@Visible}"/>
+            </Frame>
+
+            <Frame type="Frame" name="ChatDisplayContainer" template="ChatEx_DynamicChatDisplay/ChatDisplayContainerTemplate">
+                <Handle val="ChatExUI_ChatDisplayContainer"/>
+                <Anchor side="Top" relative="$GameUI/UIContainer/FullscreenUpperContainer/ChatDisplay" pos="Min" offset="-8"/>
+                <Anchor side="Left" relative="$GameUI/UIContainer/FullscreenUpperContainer/ChatDisplay" pos="Min" offset="-12"/>
+                <Anchor side="Bottom" relative="$GameUI/UIContainer/FullscreenUpperContainer/ChatDisplay" pos="Max" offset="8"/>
+                <Anchor side="Right" relative="$GameUI/UIContainer/FullscreenUpperContainer/ChatDisplay" pos="Max" offset="12"/>
+
+                <Frame type="Button" name="DisplayInfoPanelButton" template="ChatEx_InfoPanel/DisplayInfoPanelButtonTemplate">
+                    <Anchor side="Top" relative="$parent" pos="Min" offset="0"/>
+                    <Anchor side="Bottom" relative="$parent" pos="Min" offset="0"/>
+                    <Anchor side="Right" relative="$parent/PinChatDisplayButton" pos="Min" offset="0"/>
+                    <Unclipped val="true"/>
+                </Frame>
+
+                <Frame type="Button" name="PinChatDisplayButton" template="ChatEx_PersistentChat/PinChatDisplayButtonTemplate">
+                    <Anchor side="Top" relative="$parent" pos="Min" offset="0"/>
+                    <Anchor side="Bottom" relative="$parent" pos="Min" offset="0"/>
+                    <Anchor side="Right" relative="$parent/ScaleChatDisplayButton" pos="Min" offset="0"/>
+                    <Unclipped val="true"/>
+                </Frame>
+
+                <Frame type="Button" name="ScaleChatDisplayButton" template="ChatEx_DynamicChatDisplay/ScaleChatDisplayButtonTemplate">
+                    <Anchor side="Top" relative="$parent" pos="Max" offset="-445"/>
+                    <Anchor side="Left" relative="$parent" pos="Min" offset="720"/>
+                    <Anchor side="Bottom" relative="$parent" pos="Max" offset="-445"/>
+                    <Anchor side="Right" relative="$parent" pos="Min" offset="720"/>
+                    <Unclipped val="true"/>
+                </Frame>
+
+                <Frame type="Image" name="InfoPanel" template="ChatEx_InfoPanel/InfoPanelTemplate">
+                    <Anchor side="Top" relative="$parent" pos="Min" offset="8"/>
+                    <Anchor side="Left" relative="$parent" pos="Min" offset="0"/>
+                    <Anchor side="Right" relative="$parent" pos="Max" offset="0"/>
+                    <Anchor side="Bottom" relative="Body" pos="Max" offset="40"/>
+                    <Unclipped val="true"/>
+                </Frame>
+
+                <StateGroup name="Opacity">
+                    <State name="Faded">
+                        <When type="Property" visible="true" frame="$GameUI_ChatBar"/>
+                        <When type="Property" hasFocus="false" frame="$GameUI_ChatBar/ChatEditBox"/>
+                        <Action type="SetProperty" alpha="128"/>
+                    </State>
+                </StateGroup>
+            </Frame>
+
+            <Frame type="Frame" name="ChatBarContainer">
+                <Handle val="ChatExUI_ChatBarContainer"/>
+                <Anchor side="Top" relative="$ChatExUI_ChatDisplayContainer" pos="Max" offset="0"/>
+                <Anchor side="Left" relative="$ChatExUI_ChatDisplayContainer" pos="Min" offset="0"/>
+                <Anchor side="Bottom" relative="$GameUI_ChatBar/ChatEditBox" pos="Max" offset="0"/>
+                <Anchor side="Right" relative="$ChatExUI_ChatDisplayContainer" pos="Max" offset="0"/>
+                <CollapseLayout val="true"/>
+                <Visible val="{$GameUI_ChatBar/@Visible}"/>
+
+                <Frame type="Frame" name="RecentMessagesButtonPair" template="ChatEx_RecentMessages/RecentMessagesButtonPairTemplate">
+                    <Anchor side="Top" relative="$parent" pos="Min" offset="-9"/>
+                    <Anchor side="Left" relative="$parent" pos="Max" offset="0"/>
+                    <Anchor side="Right" relative="$parent" pos="Max" offset="0"/>
+                    <Unclipped val="true"/>
+                </Frame>
+
+
+                <Frame type="Button" name="RpgCameraButton" template="ChatEx_Buttons/RpgCameraButtonTemplate">
+                    <Anchor side="Top" relative="$parent" pos="Max" offset="0"/>
+                    <Anchor side="Bottom" relative="$parent" pos="Max" offset="0"/>
+                    <Anchor side="Right" relative="$parent/CinematicModeButton" pos="Min" offset="#ChatEx_ChatBubblesButton_RightOffset"/>
+                    <Unclipped val="true"/>
+                    <Visible val="#ChatEx_RpgCameraButton_Visible"/>
+                </Frame>
+
+                <Frame type="Button" name="CinematicModeButton" template="ChatEx_CinematicMode/CinematicModeButtonTemplate">
+                    <Anchor side="Top" relative="$parent" pos="Max" offset="0"/>
+                    <Anchor side="Left" relative="$parent" pos="Mid" offset="0"/>
+                    <Anchor side="Bottom" relative="$parent" pos="Max" offset="0"/>
+                    <Anchor side="Right" relative="$parent" pos="Mid" offset="0"/>
+                    <Unclipped val="true"/>
+                    <Visible val="#ChatEx_CinematicModeButton_Visible"/>
+                </Frame>
+
+                <Frame type="Button" name="ChatBubblesButton" template="ChatEx_Buttons/ChatBubblesButtonTemplate">
+                    <Anchor side="Top" relative="$parent" pos="Max" offset="0"/>
+                    <Anchor side="Bottom" relative="$parent" pos="Max" offset="0"/>
+                    <Anchor side="Left" relative="$parent/CinematicModeButton" pos="Max" offset="#ChatEx_ChatBubblesButton_LeftOffset"/>
+                    <Unclipped val="true"/>
+                    <Visible val="#ChatEx_ChatBubblesButton_Visible"/>
+                </Frame>
+
+                <Frame type="Button" name="HideChatDisplayButton" template="ChatEx_PersistentChat/HideChatDisplayButtonTemplate">      
+                    <Anchor side="Top" relative="$parent" pos="Max" offset="0"/>
+                    <Anchor side="Bottom" relative="$parent" pos="Max" offset="0"/>
+                    <Anchor side="Left" relative="$parent" pos="Max" offset="0"/>
+                    <Anchor side="Right" relative="$parent" pos="Max" offset="0"/>
+                    <Unclipped val="true"/>
+                    <Visible val="#ChatEx_HideChatDisplayButton_Visible"/>
+                </Frame>
+
+                <StateGroup name="IsFocused">
+                    <DefaultState val="NotFocused"/>
+                    <State name="Focused">
+                        <When type="Property" hasFocus="true" frame="$GameUI_ChatBar/ChatEditBox"/>
+                    </State>
+                    <State name="NotFocused"/>
+                </StateGroup>
+
+                <StateGroup name="IsHovered">
+                    <DefaultState val="NotHovered"/>
+                    <State name="Hovered">
+                        <When type="Property" hovering="true" frame="$GameUI_ChatBar/ChatEditBox"/>
+                    </State>
+                    <State name="NotHovered"/>
+                </StateGroup>
+
+                <StateGroup name="Opacity">
+                    <State name="Faded">
+                        <When type="StateGroup" isFocused="NotFocused"/>
+                        <Action type="SetProperty" alpha="128"/>
+                    </State>
+                </StateGroup>
+            </Frame>
+
+            <Frame type="Frame" name="LiveTypingContainer" template="ChatEx_LiveTyping/LiveTypingContainerTemplate">      
+                <Anchor side="Top" relative="$ChatExUI_ChatBarContainer" pos="Max" offset="8"/>
+                <Anchor side="Left" relative="$ChatExUI_ChatBarContainer" pos="Min" offset="0"/>
+                <Anchor side="Bottom" relative="TypingLabel" pos="Max" offset="0"/>
+                <Anchor side="Right" relative="$ChatExUI_ChatBarContainer" pos="Max" offset="-12"/>
+
+                <StateGroup name="ChangeTopAnchor">
+                    <State name="AnchorToGameUIChatBar">
+                        <When type="Property" visible="true" frame="$GameUI_ChatBar"/>
+                        <When type="Property" text="" operator="NotEqual" frame="$GameUI_ChatBar/HelpLabel"/>
+                        <Action type="SetAnchor" side="Top" relative="$GameUI_ChatBar/HelpLabel" pos="Max" offset="0"/>
+                    </State>
+                </StateGroup>
+            </Frame>
+        </Frame>
+
+        <Frame type="GameMessageDisplay" name="UIContainer/FullscreenUpperContainer/ChatDisplay" template="ChatEx_PersistentChat/MakeChatDisplayPersistent">
+            <Anchor side="Top" relative="$ChatExUI_ChatDisplayContainer/ScaleChatDisplayButton" pos="Mid" offset="8"/>
+            <Anchor side="Left" relative="$GameUI" pos="Mid" offset="-348"/>
+            <Anchor side="Bottom" relative="$ConsoleUIContainer/ControlGroupPanel" pos="Min" offset="-125"/>
+            <Anchor side="Right" relative="$ChatExUI_ChatDisplayContainer/ScaleChatDisplayButton" pos="Mid" offset="-12"/>
+        </Frame>
+
+        <Frame type="ChatBar" name="UIContainer/FullscreenUpperContainer/ChatBar">
+            <!-- Anchors set in MutatorSelectionState state group-->
+
+            <Frame type="Image" name="BackgroundImage">
+                <Anchor relative="$ChatExUI_ChatBarContainer"/>
+                <Texture val="@@UI/TechTreeBuildingNameBackground"/>
+            </Frame>
+
+            <Frame type="Image" name="EmojiBorderLine">
+                <Visible val="false"/>
+            </Frame>
+
+            <Frame type="Image" name="RecipientImage">
+                <Anchor side="Top" relative="$parent/RecipientLabel" pos="Mid" offset="0"/>
+                <Anchor side="Left" relative="$this" pos="Max" offset="0"/>
+                <Anchor side="Bottom" relative="$parent/RecipientLabel" pos="Mid" offset="0"/>
+                <Anchor side="Right" relative="$parent/RecipientLabel" pos="Min" offset="-4"/>
+                <Unclipped val="true"/>
+            </Frame>
+
+            <Frame type="Label" name="RecipientLabel">
+                <Anchor side="Top" relative="$parent/ChatEditBox/LabelContainerFrame" pos="Min" offset="0"/>
+                <Anchor side="Left" relative="$this" pos="Max" offset="0"/>
+                <Anchor side="Bottom" relative="$this" pos="Min" offset="0"/>
+                <Anchor side="Right" relative="$parent" pos="Min" offset="6"/>
+                <Unclipped val="true"/>
+            </Frame>
+
+            <Frame type="EditBox" name="ChatEditBox" template="ChatEx_RecentMessages/ConnectChatEditBoxToTextSetterLabelsTemplate">
+                <Anchor side="Top" relative="$parent" pos="Min" offset="0"/>
+                <Anchor side="Left" relative="$parent" pos="Min" offset="0"/>
+                <Anchor side="Bottom" relative="LabelContainerFrame/Label" pos="Max" offset="12"/>
+                <Anchor side="Right" relative="$parent" pos="Max" offset="0"/>
+                <Insets top="12" left="11" bottom="0" right="11"/>
+                <Alpha val="222"/>
+                <MultiLine val="true"/>
+                <BlocksShortcuts val="false"/>
+
+                <Frame type="Frame" name="LabelContainerFrame">
+                    <Frame type="Label" name="Label">
+                        <Anchor side="Top" relative="$parent" pos="Min" offset="0"/>
+                        <Anchor side="Left" relative="$parent" pos="Min" offset="0"/>
+                        <Anchor side="Right" relative="$parent" pos="Max" offset="0"/>
+                    </Frame>
+                </Frame>
+            </Frame>
+
+            <Frame type="Label" name="HelpLabel">
+                <Anchor side="Top" relative="$ChatExUI_ChatBarContainer" pos="Max" offset="8"/>
+            </Frame>
+
+            <Frame type="Button" name="EmoticonButton" template="ChatEx_Templates/CinematicFrameTemplate">
+                <Anchor side="Top" relative="$ChatExUI_ChatBarContainer" pos="Max" offset="0"/>
+                <Anchor side="Left" relative="$ChatExUI_ChatBarContainer" pos="Min" offset="0"/>
+                <Anchor side="Bottom" relative="$ChatExUI_ChatBarContainer" pos="Max" offset="0"/>
+                <Anchor side="Right" relative="$ChatExUI_ChatBarContainer" pos="Min" offset="0"/>
+                <Unclipped val="true"/>
+
+                <Frame type="Image" name="NormalImage">
+                    <Height val="20"/>
+                    <Width val="20"/>
+                </Frame>
+
+                <Frame type="Image" name="HoverImage">
+                    <Anchor relative="$parent/NormalImage"/>
+                </Frame>
+            </Frame>
+
+            <StateGroup name="MutatorSelectionState">
+                <State name="Inactive">
+                    <Action type="SetAnchor" side="Top" relative="$ChatExUI_ChatDisplayContainer" pos="Max" offset="0"/>
+                    <Action type="SetAnchor" side="Left" relative="$ChatExUI_ChatDisplayContainer" pos="Min" offset="0"/>
+                    <Action type="SetAnchor" side="Bottom" relative="HelpLabel" pos="Max" offset="0"/>
+                    <Action type="SetAnchor" side="Right" relative="$ChatExUI_ChatDisplayContainer" pos="Max" offset="0"/>
+                </State>
+            </StateGroup>
+        </Frame>
+
+        <Frame type="Frame" name="UIContainer/FullscreenUpperContainer">
+            <Frame type="Label" name="ChatHelpLabel">
+                <Alpha val="0"/>
+                <Visible val="false"/>
+            </Frame>
+            <StateGroup name="MutatorSelectionState">
+                <State name="Active"> 
+                    <!-- Bug fix for Co-op Mission dependency -->
+                    <Action type="SetState" group="MutatorSelectionState" state="Inactive" frame="ChatBar"/>
+                </State>
+            </StateGroup>
+        </Frame>
+    </Frame>
+</Desc>

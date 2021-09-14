@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<Desc>
+    <Frame type="Button" name="ScaleChatDisplayButtonTemplate" template="ChatEx_Templates/DraggableIconButtonTemplate">
+        <Tooltip val="@DOCSTR_ChatEx_ScaleChatDisplay_ButtonTooltip"/>
+        <DragConstraintFrame val="$parent/ScaleChatDisplayButtonConstraintFrame"/>
+    
+        <Frame type="Image" name="NormalImage">
+            <Texture val="Assets\Textures\btn-command-patrol.dds" layer="2"/>
+            <TextureCoords top="-0.33" left="-0.33" bottom="1.33" right="1.33" layer="2"/>
+            <TextureCoordRotation val="90" layer="2"/>
+        </Frame>
+
+        <Frame type="Image" name="HoverImage">
+            <Texture val="Assets\Textures\btn-command-patrol.dds" layer="2"/>
+            <TextureCoords top="-0.33" left="-0.33" bottom="1.33" right="1.33" layer="2"/>
+            <TextureCoordRotation val="90" layer="2"/>
+        </Frame>
+    </Frame>
+
+    <Frame type="Frame" name="ChatDisplayContainerTemplate">
+        <Visible val="{$ChatExUI_ChatBarContainer/@Visible}"/>
+
+        <Frame type="Frame" name="ScaleChatDisplayButtonConstraintFrame">
+            <Anchor side="Top" relative="$GameUI" pos="Min" offset="0"/>
+            <Anchor side="Left" relative="$parent" pos="Min" offset="580"/>
+            <Anchor side="Bottom" relative="$parent" pos="Max" offset="0"/>
+            <Anchor side="Right" relative="$GameUI" pos="Max" offset="0"/>
+        </Frame>
+
+        <Animation name="SetHovered">
+            <Event event="OnMouseEnter" frame="$GameUI/UIContainer/FullscreenUpperContainer/ChatDisplay" action="Play"/>
+            <Event event="OnMouseExit" frame="$GameUI/UIContainer/FullscreenUpperContainer/ChatDisplay" action="Reset"/>
+            <Controller type="State" stateGroup="IsHovered" end="Pause">
+                <Key type="Identifier" time="0" value="Hovered"/>
+            </Controller>
+        </Animation>
+
+        <StateGroup name="IsHovered">
+            <DefaultState val="NotHovered"/>
+            <State name="Hovered"/>
+            <State name="NotHovered"/>
+        </StateGroup>
+    </Frame>
+
+    <Frame type="GameMessageDisplay" name="MakeChatDisplayDynamic">
+        <AcceptsMouse val="{$GameUI_ChatBar/ChatEditBox/@HasFocus}"/>
+        <Draggable val="true"/>
+        <DragConstraintFrame val="$GameUI"/>
+        <DragCursor val="GripClosed"/>
+        <DragHoverCursor val="GripOpen"/>
+    </Frame>
+</Desc>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<Desc>
+    <Include path="UI/Layout/ChatEx_Constants.SC2Layout"/>
+    <Include path="UI/Layout/ChatEx_Templates.SC2Layout"/>
+    <Include path="UI/Layout/ChatEx_Buttons.SC2Layout"/>
+    <Include path="UI/Layout/ChatEx_CinematicMode.SC2Layout"/>
+    <Include path="UI/Layout/ChatEx_DynamicChatDisplay.SC2Layout"/>
+    <Include path="UI/Layout/ChatEx_InfoPanel.SC2Layout"/>
+    <Include path="UI/Layout/ChatEx_LiveTyping.SC2Layout"/>
+    <Include path="UI/Layout/ChatEx_PersistentChat.SC2Layout"/>
+    <Include path="UI/Layout/ChatEx_RecentMessages.SC2Layout"/>
+    <Include path="UI/Layout/ChatExUI.SC2Layout"/>
+</Desc>

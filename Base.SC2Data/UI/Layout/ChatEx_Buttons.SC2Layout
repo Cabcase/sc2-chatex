@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<Desc>
+    <Frame type="Button" name="ChatBubblesButtonTemplate" template="ChatEx_Templates/ToggleableIconButtonTemplate">
+        <Tooltip val="@DOCSTR_ChatEx_ChatBubbles_ButtonTooltip"/>
+        <Shortcut val="Control + Alt + B"/>
+        
+        <Frame type="Image" name="NormalImage">
+            <Texture val="Assets\Textures\sc2_ui_glues_icons_chatchannel.dds" layer="2"/>
+            <TextureCoords top="-0.35" left="-0.35" bottom="1.35" right="1.35" layer="2"/>
+        </Frame>
+
+        <Frame type="Image" name="HoverImage">
+            <Texture val="Assets\Textures\sc2_ui_glues_icons_chatchannel.dds" layer="2"/>
+            <TextureCoords top="-0.35" left="-0.35" bottom="1.35" right="1.35" layer="2"/>
+        </Frame>
+    </Frame>
+
+    <Frame type="Button" name="RpgCameraButtonTemplate" template="ChatEx_Templates/ToggleableIconButtonTemplate">
+        <Tooltip val="@DOCSTR_ChatEx_RpgCamera_ButtonTooltip"/>
+        <Shortcut val="Control + Alt + R"/>
+        
+        <Frame type="Image" name="NormalImage">
+            <Texture val="Assets\Textures\ui_replay_icon_campaign.dds" layer="2"/>
+            <TextureCoords top="-0.35" left="-0.35" bottom="1.35" right="1.35" layer="2"/>
+        </Frame>
+
+        <Frame type="Image" name="HoverImage">
+            <Texture val="Assets\Textures\ui_replay_icon_campaign.dds" layer="2"/>
+            <TextureCoords top="-0.35" left="-0.35" bottom="1.35" right="1.35" layer="2"/>
+        </Frame>
+    </Frame>
+</Desc>

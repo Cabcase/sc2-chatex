@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<Desc>
+    <Frame type="Frame" name="HoverAreasTemplate">
+        <Anchor relative="$GameUI"/>
+        <Visible val="{$ChatExUI_ChatBarContainer/CinematicModeButton/@Toggled}"/>
+
+        <Frame type="Control" name="ShowUIHoverArea">
+            <Anchor side="Top" relative="$ConsoleUIContainer/MinimapPanel" pos="Min" offset="0"/>
+            <Anchor side="Left" relative="$GameUI" pos="Min" offset="0"/>
+            <Anchor side="Bottom" relative="$GameUI" pos="Max" offset="0"/>
+            <Anchor side="Right" relative="$GameUI" pos="Max" offset="0"/>
+        </Frame>
+
+        <Frame type="Control" name="HideUIHoverArea">
+            <Anchor side="Top" relative="$GameUI" pos="Min" offset="0"/>
+            <Anchor side="Left" relative="$GameUI" pos="Min" offset="0"/>
+            <Anchor side="Bottom" relative="$ConsoleUIContainer/MinimapPanel" pos="Min" offset="0"/>
+            <Anchor side="Right" relative="$GameUI" pos="Max" offset="0"/>
+            <AcceptsMouse val="false"/>
+        </Frame>
+
+        <Animation name="SetConsoleUIHover">
+            <Event event="OnMouseEnter" action="Play" frame="ShowUIHoverArea"/>
+            <Event event="OnMouseEnter" action="Reset" frame="HideUIHoverArea"/>
+            <Controller type="State" stateGroup="ConsoleUIHover" frame="$ChatExUI_ChatBarContainer/CinematicModeButton" end="Pause">
+                <Key type="Identifier" time="0" value="Hovered"/>
+            </Controller>
+            <Controller type="Property" property="AcceptsMouse" frame="ShowUIHoverArea" end="Pause">
+                <Key type="Property" time="0" value="false"/>
+            </Controller>
+            <Controller type="Property" property="AcceptsMouse" frame="HideUIHoverArea" end="Pause">
+                <Key type="Property" time="0" value="true"/>
+            </Controller>
+        </Animation>
+    </Frame>
+
+    <Frame type="Button" name="CinematicModeButtonTemplate" template="ChatEx_Templates/ToggleableIconButtonTemplate">
+        <Tooltip val="@DOCSTR_ChatEx_CinematicMode_ButtonTooltip"/>
+        <Shortcut val="Control + Alt + C"/>
+        
+        <Frame type="Image" name="NormalImage">
+            <Texture val="Assets\Textures\ui_tutorial_cameraicon2.dds" layer="2"/>
+            <TextureCoords top="-0.3" left="-0.3" bottom="1.3" right="1.3" layer="2"/>
+        </Frame>
+
+        <Frame type="Image" name="HoverImage">
+            <Texture val="Assets\Textures\ui_tutorial_cameraicon2.dds" layer="2"/>
+            <TextureCoords top="-0.3" left="-0.3" bottom="1.3" right="1.3" layer="2"/>
+        </Frame>
+
+        <StateGroup name="DisableCinematicModeConceal">
+            <DefaultState val="Disabled"/>
+            <State name="Disabled">
+                <Action type="SetAnimationProperty" animation="CinematicModeConceal" enabled="false"/>
+            </State>
+        </StateGroup>
+
+        <StateGroup name="ConsoleUIHover">
+            <DefaultState val="NotHovered"/>
+            <State name="Hovered"/>
+            <State name="NotHovered"/>
+        </StateGroup>
+
+        <StateGroup name="HideGameUI">
+            <State name="Hidden">
+                <When type="Property" Toggled="true"/>
+                <When type="StateGroup" ConsoleUIHover="NotHovered"/>
+                <Action type="SetProperty" Visible="false" frame="$GameUI/UIContainer/ConsolePanel"/>
+                <Action type="SetProperty" alpha="0" frame="$GameUI/UIContainer/ConsoleUIContainer"/>
+                <Action type="SetProperty" Visible="false" frame="$GameUI/UIContainer/FullscreenUpperContainer/HeroPanel"/>
+                <Action type="SetProperty" Visible="false" frame="$GameUI/UIContainer/FullscreenUpperContainer/MenuBar"/>
+                <Action type="SetProperty" Visible="false" frame="$GameUI/UIContainer/FullscreenUpperContainer/TeamResourceButton"/>
+                <Action type="SetProperty" Visible="false" frame="$GameUI/UIContainer/FullscreenUpperContainer/TriggerContainer"/>
+                <Action type="SetProperty" Visible="false" frame="$GameUI/UIContainer/FullscreenUpperContainer/ResourcePanel"/>
+                <Action type="SetAnchor" frame="$GameUI/WorldPanel" side="Bottom" relative="$GameUI" pos="Max" offset="0"/>
+            </State>
+        </StateGroup>
+    </Frame>
+</Desc>

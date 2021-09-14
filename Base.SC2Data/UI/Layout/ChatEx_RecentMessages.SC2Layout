@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<Desc>
+    <Frame type="Frame" name="TextSetterLabelsTemplate">
+        <Visible val="false"/>
+        <Frame type="Label" name="Label1"/>
+        <Frame type="Label" name="Label2"/>
+        <Frame type="Label" name="Label3"/>
+        <Frame type="Label" name="Label4"/>
+        <Frame type="Label" name="Label5"/>
+        <Frame type="Label" name="Label6"/>
+        <Frame type="Label" name="Label7"/>
+        <Frame type="Label" name="Label8"/>
+        <Frame type="Label" name="Label9"/>
+        <Frame type="Label" name="Label10"/>
+        <Frame type="Label" name="Label11"/>
+        <Frame type="Label" name="Label12"/>
+        <Frame type="Label" name="Label13"/>
+        <Frame type="Label" name="Label14"/>
+    </Frame>
+
+    <Frame type="Frame" name="ConnectChatEditBoxToTextSetterLabelsTemplate">
+        <StateGroup name="TextBoundTo">
+            <State name="ClearText">
+                <When type="AnimationState" BindTextTo="ClearText"/>
+                <Action type="SetProperty" Text=""/>
+            </State>
+            <State name="Label1">
+                <When type="AnimationState" BindTextTo="Label1"/>
+                <Action type="SetProperty" Text="{$GameUI/ChatExUI/TextSetterLabels/Label1/@Text}"/>
+            </State>
+            <State name="Label2">
+                <When type="AnimationState" BindTextTo="Label2"/>
+                <Action type="SetProperty" Text="{$GameUI/ChatExUI/TextSetterLabels/Label2/@Text}"/>
+            </State>
+            <State name="Label3">
+                <When type="AnimationState" BindTextTo="Label3"/>
+                <Action type="SetProperty" Text="{$GameUI/ChatExUI/TextSetterLabels/Label3/@Text}"/>
+            </State>
+            <State name="Label4">
+                <When type="AnimationState" BindTextTo="Label4"/>
+                <Action type="SetProperty" Text="{$GameUI/ChatExUI/TextSetterLabels/Label4/@Text}"/>
+            </State>
+            <State name="Label5">
+                <When type="AnimationState" BindTextTo="Label5"/>
+                <Action type="SetProperty" Text="{$GameUI/ChatExUI/TextSetterLabels/Label5/@Text}"/>
+            </State>
+            <State name="Label6">
+                <When type="AnimationState" BindTextTo="Label6"/>
+                <Action type="SetProperty" Text="{$GameUI/ChatExUI/TextSetterLabels/Label6/@Text}"/>
+            </State>
+            <State name="Label7">
+                <When type="AnimationState" BindTextTo="Label7"/>
+                <Action type="SetProperty" Text="{$GameUI/ChatExUI/TextSetterLabels/Label7/@Text}"/>
+            </State>
+            <State name="Label8">
+                <When type="AnimationState" BindTextTo="Label8"/>
+                <Action type="SetProperty" Text="{$GameUI/ChatExUI/TextSetterLabels/Label8/@Text}"/>
+            </State>
+            <State name="Label9">
+                <When type="AnimationState" BindTextTo="Label9"/>
+                <Action type="SetProperty" Text="{$GameUI/ChatExUI/TextSetterLabels/Label9/@Text}"/>
+            </State>
+            <State name="Label10">
+                <When type="AnimationState" BindTextTo="Label10"/>
+                <Action type="SetProperty" Text="{$GameUI/ChatExUI/TextSetterLabels/Label10/@Text}"/>
+            </State>
+            <State name="Label11">
+                <When type="AnimationState" BindTextTo="Label11"/>
+                <Action type="SetProperty" Text="{$GameUI/ChatExUI/TextSetterLabels/Label11/@Text}"/>
+            </State>
+            <State name="Label12">
+                <When type="AnimationState" BindTextTo="Label12"/>
+                <Action type="SetProperty" Text="{$GameUI/ChatExUI/TextSetterLabels/Label12/@Text}"/>
+            </State>
+            <State name="Label13">
+                <When type="AnimationState" BindTextTo="Label13"/>
+                <Action type="SetProperty" Text="{$GameUI/ChatExUI/TextSetterLabels/Label13/@Text}"/>
+            </State>
+            <State name="Label14">
+                <When type="AnimationState" BindTextTo="Label14"/>
+                <Action type="SetProperty" Text="{$GameUI/ChatExUI/TextSetterLabels/Label14/@Text}"/>
+            </State>
+        </StateGroup>
+    </Frame>
+
+    <Frame type="Button" name="RecentMessageButtonTemplate" template="ChatEx_Templates/IconButtonTemplate">
+        <Height val="22"/>
+        <Width val="22"/>
+        <Visible val="false"/>
+
+        <Frame type="Image" name="Background">
+            <Anchor relative="$parent"/>
+            <Color val="000000"/>
+        </Frame>
+
+        <Frame type="Image" name="NormalImage">
+            <LayerCount val="1"/>
+            <Texture val="@@UI/TeamResourceSpinnerArrowHover"/>
+            <TextureType val="Normal"/>
+            <LayerAlpha val="171"/>
+        </Frame>
+
+        <Frame type="Image" name="HoverImage">
+            <LayerCount val="1"/>
+            <Texture val="@@UI/TeamResourceSpinnerArrowHover"/>
+            <TextureType val="Normal"/>
+        </Frame>
+
+        <Animation name="CinematicModeReveal">
+            <Event event="Pushed" frame="$parent/PreviousMessageButton" action="Play"/>
+            <Event event="OnMouseEnter" frame="$parent/PreviousMessageButton" action="Play"/>
+        </Animation>
+    </Frame>
+
+    <Frame type="Button" name="PreviousMessageButtonTemplate" template="ChatEx_RecentMessages/RecentMessageButtonTemplate">
+        <Tooltip val="@DOCSTR_ChatEx_RecentMessages_PreviousMessageButtonTooltip"/>
+        <Shortcut val="Control + Alt + Up"/>
+
+        <Animation name="CinematicModeReveal">
+            <Event event="Pushed" frame="$parent/NextMessageButton" action="Play"/>
+            <Event event="OnMouseEnter" frame="$parent/NextMessageButton" action="Play"/>
+        </Animation>
+    </Frame>
+
+    <Frame type="Button" name="NextMessageButtonTemplate" template="ChatEx_RecentMessages/RecentMessageButtonTemplate">
+        <Tooltip val="@DOCSTR_ChatEx_RecentMessages_NextMessageButtonTooltip"/>
+        <Shortcut val="Control + Alt + Down"/>
+
+        <Frame type="Image" name="NormalImage">
+            <TextureCoords top="1.0" left="0.0" bottom="0.0" right="1.0"/>
+        </Frame>
+
+        <Frame type="Image" name="HoverImage">
+            <TextureCoords top="1.0" left="0.0" bottom="0.0" right="1.0"/>
+        </Frame>
+    </Frame>
+
+    <Frame type="Frame" name="RecentMessagesButtonPairTemplate">
+        <Height val="48"/>
+        <Width val="{PreviousMessageButton/@Width}"/>
+        
+        <Frame type="Button" name="PreviousMessageButton" template="ChatEx_RecentMessages/PreviousMessageButtonTemplate">
+            <Anchor side="Top" relative="$parent" pos="Min" offset="0"/>
+            <Anchor side="Left" relative="$parent" pos="Min" offset="0"/>
+        </Frame>
+
+        <Frame type="Button" name="NextMessageButton" template="ChatEx_RecentMessages/NextMessageButtonTemplate">
+            <Anchor side="Left" relative="$parent" pos="Min" offset="0"/>
+            <Anchor side="Bottom" relative="$parent" pos="Max" offset="0"/>
+        </Frame>
+
+        <StateGroup name="IsHovered">
+            <DefaultState val="Hovered"/>
+            <State name="NotHovered">
+                <When type="StateGroup" isHovered="NotHovered" frame="$ChatExUI_ChatBarContainer"/>
+            </State>
+            <State name="Hovered"/>
+        </StateGroup>
+    </Frame>
+</Desc>

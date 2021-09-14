@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<Desc>
+    <Frame type="Frame" name="CinematicFrameTemplate">
+        <Animation name="CinematicModeReveal">
+            <Event event="Reveal" action="Play"/>
+            <Event event="Normal" frame="$ChatExUI_ChatBarContainer/CinematicModeButton" action="Play"/>
+            <Event event="Pushed" action="Play"/>
+            <Event event="OnMouseEnter" action="Play"/>
+            <Event event="OnMouseEnter" frame="$parent" action="Play"/>
+            <Controller type="Fade" end="Pause">
+                <Key type="Curve" time="0" value="255"/>
+            </Controller>
+        </Animation>
+
+        <Animation name="CinematicModeConceal">
+            <Event event="Conceal" action="Play"/>
+            <Event event="Toggled" frame="$ChatExUI_ChatBarContainer/CinematicModeButton" action="Play"/>
+            <Controller type="Fade" end="Pause">
+                <Key type="Curve" time="0" value="0"/>
+            </Controller>
+        </Animation>
+
+        <StateGroup name="CinematicModeConcealWhenChatBarClosed">
+            <DefaultState val="Visible"/>
+            <State name="Concealed">
+                <When type="Property" toggled="true" frame="$ChatExUI_ChatBarContainer/CinematicModeButton"/>
+                <When type="Property" visible="false" frame="$ChatExUI_ChatBarContainer"/>
+                <Action type="SendEvent" event="Conceal"/>
+            </State>
+            <State name="Visible"/>
+        </StateGroup>
+
+        <StateGroup name="CinematicModeRevealWhenParentHovered">
+            <DefaultState val="Hidden"/>
+            <State name="Revealed">
+                <When type="StateGroup" IsHovered="Hovered" frame="$parent"/>
+                <Action type="SendEvent" event="Reveal"/>
+            </State>
+            <State name="Hidden"/>
+        </StateGroup>
+    </Frame>
+
+    <Frame type="Button" name="IconButtonTemplate" template="ChatEx_Templates/CinematicFrameTemplate">
+        <Width val="32"/>
+        <Height val="32"/>
+        <TooltipAnchorPosition val="TopCenter"/>
+        <NormalImage val="NormalImage"/>
+        <HoverImage val="HoverImage"/>
+        <ClickSound val="@UI_ActionButtonSelect"/>
+
+        <Frame type="Image" name="NormalImage">
+            <LayerCount val="3"/>
+            <Texture val="Assets\Textures\ui_help_frame_tips_checkbox_normalpressed.dds" layer="0"/>
+            <TextureType val="Border" layer="0"/>
+            <StateCount val="2" layer="0"/>
+            <LayerColor val="##StandardBorder" layer="0"/>
+            <!-- The texture is included twice to make it darker -->
+            <Texture val="Assets\Textures\ui_help_frame_tips_checkbox_normalpressed.dds" layer="1"/>
+            <TextureType val="Border" layer="1"/>
+            <StateCount val="2" layer="1"/>
+            <LayerColor val="##StandardBorder" layer="1"/>
+            <DescFlags val="Internal"/>
+        </Frame>
+
+        <Frame type="Image" name="HoverImage" template="ChatEx_Templates/IconButtonTemplate/NormalImage">
+            <Texture val="Assets\Textures\ui_help_frame_tips_checkbox_normaloverpressedover.dds" layer="0"/>
+            <Texture val="Assets\Textures\ui_help_frame_tips_checkbox_normaloverpressedover.dds" layer="1"/> 
+        </Frame>
+    </Frame>
+
+    <Frame type="Button" name="ToggleableIconButtonTemplate" template="ChatEx_Templates/IconButtonTemplate">
+        <Toggleable val="true"/>
+
+        <Frame type="Image" name="NormalImage">
+            <Animation name="OnToggle">
+                <Event event="Toggled" frame="$parent" action="Play"/>
+                <Event event="Normal" frame="$parent" action="Reset"/>
+            </Animation>
+        </Frame>
+
+        <Frame type="Image" name="HoverImage">
+            <Animation name="OnToggle">
+                <Event event="Toggled" frame="$parent" action="Play"/>
+                <Event event="Normal" frame="$parent" action="Reset"/>
+            </Animation>
+        </Frame>
+
+        <Animation name="CinematicModeReveal">
+            <Event event="Toggled" action="Play"/>
+        </Animation>
+    </Frame>
+
+    <Frame type="Button" name="DraggableIconButtonTemplate" template="ChatEx_Templates/IconButtonTemplate">
+        <Draggable val="true"/>
+        <DragCursor val="GripClosed"/>
+        <DragHoverCursor val="GripOpen"/>
+    </Frame>
+</Desc>

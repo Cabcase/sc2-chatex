@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<Desc>
+    <Frame type="Label" name="PlayerLabelTemplate">
+        <Anchor side="Top" relative="$parent/TypingLabel" pos="Mid" offset="0"/>
+        <Anchor side="Bottom" relative="$parent/TypingLabel" pos="Mid" offset="0"/>
+        <Style val="ChatEx_LiveTyping_PlayerLabel"/>
+    </Frame>
+
+    <Frame type="Frame" name="LiveTypingContainerTemplate">
+        <Frame type="Label" name="TypingLabel">
+            <Anchor side="Top" relative="$parent" pos="Min" offset="0"/>
+            <Anchor side="Left" relative="$parent" pos="Min" offset="12"/>
+            <Alpha val="222"/>
+            <Visible val="false"/>
+            <Text val="Typing:"/>
+            <Style val="ChatEx_LiveTyping_TypingLabel"/>
+        </Frame>
+
+        <Frame type="Label" name="PlayerLabel0" template="ChatEx_LiveTyping/PlayerLabelTemplate">
+            <Anchor side="Left" relative="$parent/TypingLabel" pos="Max" offset="4"/>
+        </Frame>
+        <Frame type="Label" name="PlayerLabel1" template="ChatEx_LiveTyping/PlayerLabelTemplate">
+            <Anchor side="Left" relative="$parent/PlayerLabel0" pos="Max" offset="4"/>
+        </Frame>
+        <Frame type="Label" name="PlayerLabel2" template="ChatEx_LiveTyping/PlayerLabelTemplate">
+            <Anchor side="Left" relative="$parent/PlayerLabel1" pos="Max" offset="4"/>
+        </Frame>
+        <Frame type="Label" name="PlayerLabel3" template="ChatEx_LiveTyping/PlayerLabelTemplate">
+            <Anchor side="Left" relative="$parent/PlayerLabel2" pos="Max" offset="4"/>
+        </Frame>
+        <Frame type="Label" name="PlayerLabel4" template="ChatEx_LiveTyping/PlayerLabelTemplate">
+            <Anchor side="Left" relative="$parent/PlayerLabel3" pos="Max" offset="4"/>
+        </Frame>
+        <Frame type="Label" name="PlayerLabel5" template="ChatEx_LiveTyping/PlayerLabelTemplate">
+            <Anchor side="Left" relative="$parent/PlayerLabel4" pos="Max" offset="4"/>
+        </Frame>
+        <Frame type="Label" name="PlayerLabel6" template="ChatEx_LiveTyping/PlayerLabelTemplate">
+            <Anchor side="Left" relative="$parent/PlayerLabel5" pos="Max" offset="4"/>
+        </Frame>
+        <Frame type="Label" name="PlayerLabel7" template="ChatEx_LiveTyping/PlayerLabelTemplate">
+            <Anchor side="Left" relative="$parent/PlayerLabel6" pos="Max" offset="4"/>
+        </Frame>
+        <Frame type="Label" name="PlayerLabel8" template="ChatEx_LiveTyping/PlayerLabelTemplate">
+            <Anchor side="Left" relative="$parent/PlayerLabel7" pos="Max" offset="4"/>
+        </Frame>
+        <Frame type="Label" name="PlayerLabel9" template="ChatEx_LiveTyping/PlayerLabelTemplate">
+            <Anchor side="Left" relative="$parent/PlayerLabel8" pos="Max" offset="4"/>
+        </Frame>
+        <Frame type="Label" name="PlayerLabel10" template="ChatEx_LiveTyping/PlayerLabelTemplate">
+            <Anchor side="Left" relative="$parent/PlayerLabel9" pos="Max" offset="4"/>
+        </Frame>
+        <Frame type="Label" name="PlayerLabel11" template="ChatEx_LiveTyping/PlayerLabelTemplate">
+            <Anchor side="Left" relative="$parent/PlayerLabel10" pos="Max" offset="4"/>
+        </Frame>
+        <Frame type="Label" name="PlayerLabel12" template="ChatEx_LiveTyping/PlayerLabelTemplate">
+            <Anchor side="Left" relative="$parent/PlayerLabel11" pos="Max" offset="4"/>
+        </Frame>
+        <Frame type="Label" name="PlayerLabel13" template="ChatEx_LiveTyping/PlayerLabelTemplate">
+            <Anchor side="Left" relative="$parent/PlayerLabel12" pos="Max" offset="4"/>
+        </Frame>
+    </Frame>
+</Desc>

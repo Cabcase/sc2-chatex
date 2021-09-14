@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<Desc>
+    <Frame type="Button" name="DisplayInfoPanelButtonTemplate" template="ChatEx_Templates/ToggleableIconButtonTemplate">
+        <Tooltip val="@DOCSTR_ChatEx_InfoPanel_ButtonTooltip"/>
+        
+        <Frame type="Image" name="NormalImage">
+            <Texture val="Assets\Textures\ui_icons_infogeneric.dds" layer="2"/>
+            <TextureCoords top="-0.25" left="-0.25" bottom="1.25" right="1.25" layer="2"/>
+        </Frame>
+
+        <Frame type="Image" name="HoverImage">
+            <Texture val="Assets\Textures\ui_icons_infogeneric.dds" layer="2"/>
+            <TextureCoords top="-0.25" left="-0.25" bottom="1.25" right="1.25" layer="2"/>
+        </Frame>
+
+        <Animation name="OnActive">
+            <Event event="Toggled" action="Play,Pause"/>
+        </Animation>
+
+        <Animation name="ShowInfoPanel">
+            <Event event="Toggled" action="DirectionForward,Play"/>
+            <Event event="Normal" action="DirectionReverse,Play"/>
+            <Controller type="Fade" frame="$ChatExUI_ChatDisplayContainer/InfoPanel" end="Pause" >
+                <Key type="Curve" time="0" value="0"/>
+                <Key type="Curve" time="0.2" value="255"/>
+            </Controller>
+        </Animation>
+    </Frame>
+
+    <Frame type="Image" name="InfoPanelTemplate">
+        <RenderPriority val="900"/>
+        <Visible val="{$ChatExUI_ChatDisplayContainer/DisplayInfoPanelButton/@Toggled}"/>
+        <Texture val="Assets\Textures\ui_battlenet_glues_pageassets_dialogbg.dds"/>
+        <TextureType val="HorizontalBorder"/>
+
+        <Frame type="Image" name="BackgroundDecoration">
+            <Anchor side="Top" relative="$parent" pos="Min" offset="0"/>
+            <Anchor side="Left" relative="$parent" pos="Min" offset="10"/>
+            <Anchor side="Bottom" relative="$parent" pos="Min" offset="264"/>
+            <Anchor side="Right" relative="$parent" pos="Max" offset="-10"/>
+            <Texture val="Assets\Textures\ui_battlenet_glues_pageassets_dialog_hexpattern.dds"/>
+        </Frame>
+
+        <Frame type="Label" name="Title">
+            <Anchor side="Top" relative="$parent" pos="Min" offset="40"/>
+            <Anchor side="Left" relative="$parent" pos="Min" offset="40"/>
+            <Anchor side="Right" relative="$parent" pos="Max" offset="-40"/>
+            <Alpha val="222"/>
+            <Text val="&lt;h&gt;CHAT&lt;/h&gt;&lt;a&gt;EX&lt;/a&gt;"/>
+            <Style val="ChatEx_InfoPanel_Title"/>
+        </Frame>
+
+        <Frame type="Label" name="AuthorLabel">
+            <Anchor side="Top" relative="$parent/Title" pos="Max" offset="0"/>
+            <Anchor side="Left" relative="$parent" pos="Min" offset="40"/>
+            <Anchor side="Right" relative="$parent" pos="Max" offset="-40"/>
+            <Alpha val="222"/>
+            <Text val="Chat Extension by &lt;h&gt;Cabcase&lt;/h&gt;"/>
+            <Style val="ChatEx_InfoPanel_AuthorLabel"/>
+        </Frame>
+
+        <Frame type="Label" name="Body">
+            <Anchor side="Top" relative="$parent/AuthorLabel" pos="Max" offset="0"/>
+            <Anchor side="Left" relative="$parent" pos="Min" offset="40"/>
+            <Anchor side="Right" relative="$parent" pos="Max" offset="-40"/>
+            <Alpha val="222"/>
+            <Text val="@DOCSTR_ChatEx_InfoPanel_Body"/>
+            <Style val="ChatEx_InfoPanel_Body"/>
+        </Frame>
+    </Frame>
+</Desc>
