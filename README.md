@@ -2,7 +2,8 @@
 
 A chat extension mod for StarCraft 2
 
-<!-- TODO: Video demo -->
+[![ChatEx Demo Thumbnail](https://user-images.githubusercontent.com/19297229/133377628-775ad9f8-165e-4e96-90a9-1191dcbdb3d5.png)](https://www.youtube.com/watch?v=dYxYuVyVPV0)
+
 
 ## Features
 
@@ -22,7 +23,7 @@ ChatEx builds on top of the default chat and adds the following:
 
 ## Installation
 
-ChatEx is published as a public extension mod named `ChatEx Chat Extension` on Blizzard's SC2 services. For an SC2 mod ChatEx is very small (<50 KB). To add ChatEx to your map do the following:
+ChatEx is published as a public extension mod named `ChatEx Chat Extension` on Blizzard's SC2 services. To add ChatEx to your map do the following:
 
 1. Open your .SC2Map or .SC2Mod file in the SC2 editor
 2. On the menu bar near the top left of the editor window click on `File>Dependencies...`
@@ -72,7 +73,7 @@ ChatEx is published as a public extension mod named `ChatEx Chat Extension` on B
 
 ## Credits
 
-Just ([@Cabcase](https://github.com/Cabcase)) for now, but hopefully more people soon! 
+Just [@Cabcase](https://github.com/Cabcase) for now, but hopefully more people soon! 
 
 ## License
 
