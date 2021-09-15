@@ -2,7 +2,8 @@
 
 A chat extension mod for StarCraft 2
 
-<!-- TODO: Video demo -->
+[![ChatEx Demo Thumbnail](https://user-images.githubusercontent.com/19297229/133377628-775ad9f8-165e-4e96-90a9-1191dcbdb3d5.png)](https://youtu.be/dYxYuVyVPV0)
+
 
 ## Features
 
