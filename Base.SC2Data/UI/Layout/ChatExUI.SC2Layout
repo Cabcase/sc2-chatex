@@ -137,14 +137,6 @@
                 <Anchor side="Left" relative="$ChatExUI_ChatBarContainer" pos="Min" offset="0"/>
                 <Anchor side="Bottom" relative="TypingLabel" pos="Max" offset="0"/>
                 <Anchor side="Right" relative="$ChatExUI_ChatBarContainer" pos="Max" offset="-12"/>
-
-                <StateGroup name="ChangeTopAnchor">
-                    <State name="AnchorToGameUIChatBar">
-                        <When type="Property" visible="true" frame="$GameUI_ChatBar"/>
-                        <When type="Property" text="" operator="NotEqual" frame="$GameUI_ChatBar/HelpLabel"/>
-                        <Action type="SetAnchor" side="Top" relative="$GameUI_ChatBar/HelpLabel" pos="Max" offset="0"/>
-                    </State>
-                </StateGroup>
             </Frame>
         </Frame>
 
@@ -203,7 +195,7 @@
             </Frame>
 
             <Frame type="Label" name="HelpLabel">
-                <Anchor side="Top" relative="$ChatExUI_ChatBarContainer" pos="Max" offset="8"/>
+                <Visible val="false"/>
             </Frame>
 
             <Frame type="Button" name="EmoticonButton" template="ChatEx_Templates/CinematicFrameTemplate">
@@ -225,10 +217,10 @@
 
             <StateGroup name="MutatorSelectionState">
                 <State name="Inactive">
-                    <Action type="SetAnchor" side="Top" relative="$ChatExUI_ChatDisplayContainer" pos="Max" offset="0"/>
-                    <Action type="SetAnchor" side="Left" relative="$ChatExUI_ChatDisplayContainer" pos="Min" offset="0"/>
-                    <Action type="SetAnchor" side="Bottom" relative="HelpLabel" pos="Max" offset="0"/>
-                    <Action type="SetAnchor" side="Right" relative="$ChatExUI_ChatDisplayContainer" pos="Max" offset="0"/>
+                    <Action type="SetAnchor" side="Top" relative="$ChatExUI_ChatBarContainer" pos="Min" offset="0"/>
+                    <Action type="SetAnchor" side="Left" relative="$ChatExUI_ChatBarContainer" pos="Min" offset="0"/>
+                    <Action type="SetAnchor" side="Bottom" relative="$ChatExUI_ChatBarContainer" pos="Max" offset="0"/>
+                    <Action type="SetAnchor" side="Right" relative="$ChatExUI_ChatBarContainer" pos="Max" offset="0"/>
                 </State>
             </StateGroup>
         </Frame>

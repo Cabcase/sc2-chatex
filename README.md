@@ -22,7 +22,7 @@ ChatEx builds on top of the default chat and adds the following:
 
 ## Installation
 
-ChatEx is published as a public extension mod named `ChatEx Chat Extension` on Blizzard's SC2 services. For an SC2 mod ChatEx is very small (<50 KB). To add ChatEx to your map do the following:
+ChatEx is published as a public extension mod named `ChatEx Chat Extension` on Blizzard's SC2 services. To add ChatEx to your map do the following:
 
 1. Open your .SC2Map or .SC2Mod file in the SC2 editor
 2. On the menu bar near the top left of the editor window click on `File>Dependencies...`
