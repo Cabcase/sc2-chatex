@@ -271,8 +271,10 @@ bool libCtEx_gt_hookup_common_dialogs_Func (bool testConds, bool runActions) {
 
     DialogControlHookupStandard(c_triggerControlTypeEditBox, "UIContainer/FullscreenUpperContainer/ChatBar/ChatEditBox");
     libCtEx_gv_chat_bar_edit_box = DialogControlLastCreated();
+    TriggerAddEventDialogControl(libCtEx_gt_player_types_in_chat_bar, c_playerAny, libCtEx_gv_chat_bar_edit_box, c_triggerControlEventTypeTextChanged);
     DialogControlHookupStandard(c_triggerControlTypeCheckBox, "ChatExUI/ChatBarVisibleStateCheckbox");
     libCtEx_gv_chat_bar_visible_checkbox = DialogControlLastCreated();
+    TriggerAddEventDialogControl(libCtEx_gt_chat_bar_hidden, c_playerAny, libCtEx_gv_chat_bar_visible_checkbox, c_triggerControlEventTypeChecked);
     return true;
 }
 
@@ -289,10 +291,6 @@ bool libCtEx_gt_chat_bar_hidden_Func (bool testConds, bool runActions) {
     // Automatic Variable Declarations
     // Conditions
     if (testConds) {
-        if (!((EventDialogControl() == libCtEx_gv_chat_bar_visible_checkbox))) {
-            return false;
-        }
-
         if (!((libNtve_gf_DialogItemIsChecked(EventDialogControl(), EventPlayer()) == false))) {
             return false;
         }
@@ -311,7 +309,6 @@ bool libCtEx_gt_chat_bar_hidden_Func (bool testConds, bool runActions) {
 //--------------------------------------------------------------------------------------------------
 void libCtEx_gt_chat_bar_hidden_Init () {
     libCtEx_gt_chat_bar_hidden = TriggerCreate("libCtEx_gt_chat_bar_hidden_Func");
-    TriggerAddEventDialogControl(libCtEx_gt_chat_bar_hidden, c_playerAny, c_invalidDialogControlId, c_triggerControlEventTypeChecked);
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -326,6 +323,7 @@ bool libCtEx_gt_hookup_chat_bubbles_toggle_Func (bool testConds, bool runActions
 
     DialogControlHookupStandard(c_triggerControlTypeButton, "ChatExUI/ChatBarContainer/ChatBubblesButton");
     libCtEx_gv_chat_bubbles_toggle = DialogControlLastCreated();
+    TriggerAddEventDialogControl(libCtEx_gt_toggle_chat_bubbles, c_playerAny, libCtEx_gv_chat_bubbles_toggle, c_triggerControlEventTypeClick);
     return true;
 }
 
@@ -367,13 +365,6 @@ void libCtEx_gt_create_chat_bubble_Init () {
 //--------------------------------------------------------------------------------------------------
 bool libCtEx_gt_toggle_chat_bubbles_Func (bool testConds, bool runActions) {
     // Automatic Variable Declarations
-    // Conditions
-    if (testConds) {
-        if (!((EventDialogControl() == libCtEx_gv_chat_bubbles_toggle))) {
-            return false;
-        }
-    }
-
     // Actions
     if (!runActions) {
         return true;
@@ -393,7 +384,6 @@ bool libCtEx_gt_toggle_chat_bubbles_Func (bool testConds, bool runActions) {
 //--------------------------------------------------------------------------------------------------
 void libCtEx_gt_toggle_chat_bubbles_Init () {
     libCtEx_gt_toggle_chat_bubbles = TriggerCreate("libCtEx_gt_toggle_chat_bubbles_Func");
-    TriggerAddEventDialogControl(libCtEx_gt_toggle_chat_bubbles, c_playerAny, c_invalidDialogControlId, c_triggerControlEventTypeClick);
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -436,13 +426,6 @@ void libCtEx_gt_hookup_live_typing_dialog_items_Init () {
 //--------------------------------------------------------------------------------------------------
 bool libCtEx_gt_player_types_in_chat_bar_Func (bool testConds, bool runActions) {
     // Automatic Variable Declarations
-    // Conditions
-    if (testConds) {
-        if (!((EventDialogControl() == libCtEx_gv_chat_bar_edit_box))) {
-            return false;
-        }
-    }
-
     // Actions
     if (!runActions) {
         return true;
@@ -458,7 +441,6 @@ bool libCtEx_gt_player_types_in_chat_bar_Func (bool testConds, bool runActions) 
 //--------------------------------------------------------------------------------------------------
 void libCtEx_gt_player_types_in_chat_bar_Init () {
     libCtEx_gt_player_types_in_chat_bar = TriggerCreate("libCtEx_gt_player_types_in_chat_bar_Func");
-    TriggerAddEventDialogControl(libCtEx_gt_player_types_in_chat_bar, c_playerAny, c_invalidDialogControlId, c_triggerControlEventTypeTextChanged);
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -519,8 +501,10 @@ bool libCtEx_gt_init_recent_messages_Func (bool testConds, bool runActions) {
 
     DialogControlHookupStandard(c_triggerControlTypeButton, "ChatExUI/ChatBarContainer/RecentMessagesButtonPair/PreviousMessageButton");
     libCtEx_gv_previous_message_button = DialogControlLastCreated();
+    TriggerAddEventDialogControl(libCtEx_gt_load_previous_message, c_playerAny, libCtEx_gv_previous_message_button, c_triggerControlEventTypeClick);
     DialogControlHookupStandard(c_triggerControlTypeButton, "ChatExUI/ChatBarContainer/RecentMessagesButtonPair/NextMessageButton");
     libCtEx_gv_next_message_button = DialogControlLastCreated();
+    TriggerAddEventDialogControl(libCtEx_gt_load_next_message, c_playerAny, libCtEx_gv_next_message_button, c_triggerControlEventTypeClick);
     auto32CE9EF7_g = PlayerGroupActive();
     lv_player = -1;
     while (true) {
@@ -549,13 +533,6 @@ bool libCtEx_gt_load_previous_message_Func (bool testConds, bool runActions) {
     // Automatic Variable Declarations
     // Variable Initialization
 
-    // Conditions
-    if (testConds) {
-        if (!((EventDialogControl() == libCtEx_gv_previous_message_button))) {
-            return false;
-        }
-    }
-
     // Actions
     if (!runActions) {
         return true;
@@ -572,7 +549,6 @@ bool libCtEx_gt_load_previous_message_Func (bool testConds, bool runActions) {
 //--------------------------------------------------------------------------------------------------
 void libCtEx_gt_load_previous_message_Init () {
     libCtEx_gt_load_previous_message = TriggerCreate("libCtEx_gt_load_previous_message_Func");
-    TriggerAddEventDialogControl(libCtEx_gt_load_previous_message, c_playerAny, c_invalidDialogControlId, c_triggerControlEventTypeClick);
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -580,13 +556,6 @@ void libCtEx_gt_load_previous_message_Init () {
 //--------------------------------------------------------------------------------------------------
 bool libCtEx_gt_load_next_message_Func (bool testConds, bool runActions) {
     // Automatic Variable Declarations
-    // Conditions
-    if (testConds) {
-        if (!((EventDialogControl() == libCtEx_gv_next_message_button))) {
-            return false;
-        }
-    }
-
     // Actions
     if (!runActions) {
         return true;
@@ -599,7 +568,6 @@ bool libCtEx_gt_load_next_message_Func (bool testConds, bool runActions) {
 //--------------------------------------------------------------------------------------------------
 void libCtEx_gt_load_next_message_Init () {
     libCtEx_gt_load_next_message = TriggerCreate("libCtEx_gt_load_next_message_Func");
-    TriggerAddEventDialogControl(libCtEx_gt_load_next_message, c_playerAny, c_invalidDialogControlId, c_triggerControlEventTypeClick);
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -634,6 +602,7 @@ bool libCtEx_gt_hookup_rpg_camera_toggle_Func (bool testConds, bool runActions) 
 
     DialogControlHookupStandard(c_triggerControlTypeButton, "ChatExUI/ChatBarContainer/RpgCameraButton");
     libCtEx_gv_rpg_camera_toggle = DialogControlLastCreated();
+    TriggerAddEventDialogControl(libCtEx_gt_toggle_rpg_camera, c_playerAny, libCtEx_gv_rpg_camera_toggle, c_triggerControlEventTypeClick);
     return true;
 }
 
@@ -648,13 +617,6 @@ void libCtEx_gt_hookup_rpg_camera_toggle_Init () {
 //--------------------------------------------------------------------------------------------------
 bool libCtEx_gt_toggle_rpg_camera_Func (bool testConds, bool runActions) {
     // Automatic Variable Declarations
-    // Conditions
-    if (testConds) {
-        if (!((EventDialogControl() == libCtEx_gv_rpg_camera_toggle))) {
-            return false;
-        }
-    }
-
     // Actions
     if (!runActions) {
         return true;
@@ -683,7 +645,6 @@ bool libCtEx_gt_toggle_rpg_camera_Func (bool testConds, bool runActions) {
 //--------------------------------------------------------------------------------------------------
 void libCtEx_gt_toggle_rpg_camera_Init () {
     libCtEx_gt_toggle_rpg_camera = TriggerCreate("libCtEx_gt_toggle_rpg_camera_Func");
-    TriggerAddEventDialogControl(libCtEx_gt_toggle_rpg_camera, c_playerAny, c_invalidDialogControlId, c_triggerControlEventTypeClick);
 }
 
 //--------------------------------------------------------------------------------------------------
