@@ -7,6 +7,7 @@
             <Item Type="Category" Library="CtEx" Id="D3F3624F"/>
             <Item Type="Category" Library="CtEx" Id="B2A7F340"/>
             <Item Type="Category" Library="CtEx" Id="C4C6B649"/>
+            <Item Type="Category" Library="CtEx" Id="0DB5D2CA"/>
         </Root>
         <Element Type="Category" Id="BEE5B93C">
             <Item Type="Variable" Library="CtEx" Id="E590388D"/>
@@ -48,8 +49,10 @@
             <Event Type="FunctionCall" Library="CtEx" Id="3E0FAB2F"/>
             <Action Type="FunctionCall" Library="CtEx" Id="85955A9D"/>
             <Action Type="FunctionCall" Library="CtEx" Id="ABFCF5BD"/>
+            <Action Type="FunctionCall" Library="CtEx" Id="ED9D176A"/>
             <Action Type="FunctionCall" Library="CtEx" Id="5BD8EFC9"/>
             <Action Type="FunctionCall" Library="CtEx" Id="85F5A8E0"/>
+            <Action Type="FunctionCall" Library="CtEx" Id="AB87EA4D"/>
         </Element>
         <Element Type="FunctionCall" Id="3E0FAB2F">
             <FunctionDef Type="FunctionDef" Library="Ntve" Id="00000120"/>
@@ -84,6 +87,30 @@
         <Element Type="FunctionCall" Id="C9D5AC71">
             <FunctionDef Type="FunctionDef" Library="Ntve" Id="4AB42F83"/>
         </Element>
+        <Element Type="FunctionCall" Id="ED9D176A">
+            <FunctionDef Type="FunctionDef" Library="CtEx" Id="75914008"/>
+            <Parameter Type="Param" Library="CtEx" Id="C49B6EB5"/>
+            <Parameter Type="Param" Library="CtEx" Id="18AB18B0"/>
+            <Parameter Type="Param" Library="CtEx" Id="35AD95DB"/>
+            <Parameter Type="Param" Library="CtEx" Id="7F5DD3C7"/>
+        </Element>
+        <Element Type="Param" Id="C49B6EB5">
+            <ParameterDef Type="ParamDef" Library="CtEx" Id="33AC9F1C"/>
+            <ValueType Type="trigger"/>
+            <ValueElement Type="Trigger" Library="CtEx" Id="CD69D2C6"/>
+        </Element>
+        <Element Type="Param" Id="18AB18B0">
+            <ParameterDef Type="ParamDef" Library="CtEx" Id="C8B268B9"/>
+            <Preset Type="PresetValue" Library="Ntve" Id="2999701E"/>
+        </Element>
+        <Element Type="Param" Id="35AD95DB">
+            <ParameterDef Type="ParamDef" Library="CtEx" Id="A348BFEF"/>
+            <Variable Type="Variable" Library="CtEx" Id="46EE58AC"/>
+        </Element>
+        <Element Type="Param" Id="7F5DD3C7">
+            <ParameterDef Type="ParamDef" Library="CtEx" Id="A0B9B63B"/>
+            <Preset Type="PresetValue" Library="Ntve" Id="644A77F9"/>
+        </Element>
         <Element Type="FunctionCall" Id="5BD8EFC9">
             <FunctionDef Type="FunctionDef" Library="Ntve" Id="CC29332F"/>
             <Parameter Type="Param" Library="CtEx" Id="C2E1AAC6"/>
@@ -95,7 +122,7 @@
         </Element>
         <Element Type="Param" Id="83E4E625">
             <ParameterDef Type="ParamDef" Library="Ntve" Id="AEF92396"/>
-            <Value>ChatPlusUI/ChatBarVisibleStateCheckbox</Value>
+            <Value>ChatExUI/ChatBarVisibleStateCheckbox</Value>
             <ValueType Type="string"/>
         </Element>
         <Element Type="FunctionCall" Id="85F5A8E0">
@@ -114,51 +141,34 @@
         <Element Type="FunctionCall" Id="925C75CB">
             <FunctionDef Type="FunctionDef" Library="Ntve" Id="4AB42F83"/>
         </Element>
+        <Element Type="FunctionCall" Id="AB87EA4D">
+            <FunctionDef Type="FunctionDef" Library="CtEx" Id="75914008"/>
+            <Parameter Type="Param" Library="CtEx" Id="CE0A9499"/>
+            <Parameter Type="Param" Library="CtEx" Id="4DE71324"/>
+            <Parameter Type="Param" Library="CtEx" Id="A1C55897"/>
+            <Parameter Type="Param" Library="CtEx" Id="6056E5B1"/>
+        </Element>
+        <Element Type="Param" Id="CE0A9499">
+            <ParameterDef Type="ParamDef" Library="CtEx" Id="33AC9F1C"/>
+            <ValueType Type="trigger"/>
+            <ValueElement Type="Trigger" Library="CtEx" Id="651860AB"/>
+        </Element>
+        <Element Type="Param" Id="4DE71324">
+            <ParameterDef Type="ParamDef" Library="CtEx" Id="C8B268B9"/>
+            <Preset Type="PresetValue" Library="Ntve" Id="2999701E"/>
+        </Element>
+        <Element Type="Param" Id="A1C55897">
+            <ParameterDef Type="ParamDef" Library="CtEx" Id="A348BFEF"/>
+            <Variable Type="Variable" Library="CtEx" Id="74D343B2"/>
+        </Element>
+        <Element Type="Param" Id="6056E5B1">
+            <ParameterDef Type="ParamDef" Library="CtEx" Id="A0B9B63B"/>
+            <Preset Type="PresetValue" Library="Ntve" Id="9F471C5F"/>
+        </Element>
         <Element Type="Trigger" Id="651860AB">
-            <Event Type="FunctionCall" Library="CtEx" Id="1838B111"/>
-            <Condition Type="FunctionCall" Library="CtEx" Id="4D3F5323"/>
             <Condition Type="FunctionCall" Library="CtEx" Id="F5787A78"/>
             <Action Type="FunctionCall" Library="CtEx" Id="71DE452D"/>
             <Action Type="FunctionCall" Library="CtEx" Id="F5A38210"/>
-        </Element>
-        <Element Type="FunctionCall" Id="1838B111">
-            <FunctionDef Type="FunctionDef" Library="Ntve" Id="B5222B7D"/>
-            <Parameter Type="Param" Library="CtEx" Id="6CAAEA19"/>
-            <Parameter Type="Param" Library="CtEx" Id="A1C6B6C6"/>
-            <Parameter Type="Param" Library="CtEx" Id="7929E7EA"/>
-        </Element>
-        <Element Type="Param" Id="6CAAEA19">
-            <ParameterDef Type="ParamDef" Library="Ntve" Id="47F2C8FB"/>
-            <Preset Type="PresetValue" Library="Ntve" Id="2999701E"/>
-        </Element>
-        <Element Type="Param" Id="A1C6B6C6">
-            <ParameterDef Type="ParamDef" Library="Ntve" Id="01D07B8F"/>
-            <Preset Type="PresetValue" Library="Ntve" Id="F13E3BA1"/>
-        </Element>
-        <Element Type="Param" Id="7929E7EA">
-            <ParameterDef Type="ParamDef" Library="Ntve" Id="B371ABF2"/>
-            <Preset Type="PresetValue" Library="Ntve" Id="9F471C5F"/>
-        </Element>
-        <Element Type="FunctionCall" Id="4D3F5323">
-            <FunctionDef Type="FunctionDef" Library="Ntve" Id="C439C375"/>
-            <Parameter Type="Param" Library="CtEx" Id="59F90838"/>
-            <Parameter Type="Param" Library="CtEx" Id="2220D66A"/>
-            <Parameter Type="Param" Library="CtEx" Id="213276DC"/>
-        </Element>
-        <Element Type="Param" Id="59F90838">
-            <ParameterDef Type="ParamDef" Library="Ntve" Id="ABB380C4"/>
-            <FunctionCall Type="FunctionCall" Library="CtEx" Id="C8FA1286"/>
-        </Element>
-        <Element Type="FunctionCall" Id="C8FA1286">
-            <FunctionDef Type="FunctionDef" Library="Ntve" Id="305EC1D4"/>
-        </Element>
-        <Element Type="Param" Id="2220D66A">
-            <ParameterDef Type="ParamDef" Library="Ntve" Id="51567265"/>
-            <Preset Type="PresetValue" Library="Ntve" Id="1E7A4625"/>
-        </Element>
-        <Element Type="Param" Id="213276DC">
-            <ParameterDef Type="ParamDef" Library="Ntve" Id="4A15EC5F"/>
-            <Variable Type="Variable" Library="CtEx" Id="74D343B2"/>
         </Element>
         <Element Type="FunctionCall" Id="F5787A78">
             <FunctionDef Type="FunctionDef" Library="Ntve" Id="C439C375"/>
@@ -265,6 +275,7 @@
             <Event Type="FunctionCall" Library="CtEx" Id="A1EC1570"/>
             <Action Type="FunctionCall" Library="CtEx" Id="D300650C"/>
             <Action Type="FunctionCall" Library="CtEx" Id="8B2A4F66"/>
+            <Action Type="FunctionCall" Library="CtEx" Id="87794567"/>
         </Element>
         <Element Type="FunctionCall" Id="A1EC1570">
             <FunctionDef Type="FunctionDef" Library="Ntve" Id="00000120"/>
@@ -281,7 +292,7 @@
         </Element>
         <Element Type="Param" Id="08F3F9F7">
             <ParameterDef Type="ParamDef" Library="Ntve" Id="AEF92396"/>
-            <Value>ChatPlusUI/ChatBarContainer/ChatBubblesButton</Value>
+            <Value>ChatExUI/ChatBarContainer/ChatBubblesButton</Value>
             <ValueType Type="string"/>
         </Element>
         <Element Type="FunctionCall" Id="8B2A4F66">
@@ -299,6 +310,30 @@
         </Element>
         <Element Type="FunctionCall" Id="70570382">
             <FunctionDef Type="FunctionDef" Library="Ntve" Id="4AB42F83"/>
+        </Element>
+        <Element Type="FunctionCall" Id="87794567">
+            <FunctionDef Type="FunctionDef" Library="CtEx" Id="75914008"/>
+            <Parameter Type="Param" Library="CtEx" Id="317B4F2A"/>
+            <Parameter Type="Param" Library="CtEx" Id="A5DBAD84"/>
+            <Parameter Type="Param" Library="CtEx" Id="A6A4714F"/>
+            <Parameter Type="Param" Library="CtEx" Id="D76B558D"/>
+        </Element>
+        <Element Type="Param" Id="317B4F2A">
+            <ParameterDef Type="ParamDef" Library="CtEx" Id="33AC9F1C"/>
+            <ValueType Type="trigger"/>
+            <ValueElement Type="Trigger" Library="CtEx" Id="992F559B"/>
+        </Element>
+        <Element Type="Param" Id="A5DBAD84">
+            <ParameterDef Type="ParamDef" Library="CtEx" Id="C8B268B9"/>
+            <Preset Type="PresetValue" Library="Ntve" Id="2999701E"/>
+        </Element>
+        <Element Type="Param" Id="A6A4714F">
+            <ParameterDef Type="ParamDef" Library="CtEx" Id="A348BFEF"/>
+            <Variable Type="Variable" Library="CtEx" Id="63006CB5"/>
+        </Element>
+        <Element Type="Param" Id="D76B558D">
+            <ParameterDef Type="ParamDef" Library="CtEx" Id="A0B9B63B"/>
+            <Preset Type="PresetValue" Library="Ntve" Id="9D6C743C"/>
         </Element>
         <Element Type="Trigger" Id="42DC9534">
             <Event Type="FunctionCall" Library="CtEx" Id="57F11E12"/>
@@ -434,48 +469,7 @@
             <Preset Type="PresetValue" Library="Ntve" Id="00000076"/>
         </Element>
         <Element Type="Trigger" Id="992F559B">
-            <Event Type="FunctionCall" Library="CtEx" Id="6CAA4600"/>
-            <Condition Type="FunctionCall" Library="CtEx" Id="35AE3834"/>
             <Action Type="FunctionCall" Library="CtEx" Id="6046D011"/>
-        </Element>
-        <Element Type="FunctionCall" Id="6CAA4600">
-            <FunctionDef Type="FunctionDef" Library="Ntve" Id="B5222B7D"/>
-            <Parameter Type="Param" Library="CtEx" Id="CC5D397C"/>
-            <Parameter Type="Param" Library="CtEx" Id="9A3A2870"/>
-            <Parameter Type="Param" Library="CtEx" Id="A4BAA65F"/>
-        </Element>
-        <Element Type="Param" Id="CC5D397C">
-            <ParameterDef Type="ParamDef" Library="Ntve" Id="47F2C8FB"/>
-            <Preset Type="PresetValue" Library="Ntve" Id="2999701E"/>
-        </Element>
-        <Element Type="Param" Id="9A3A2870">
-            <ParameterDef Type="ParamDef" Library="Ntve" Id="01D07B8F"/>
-            <Preset Type="PresetValue" Library="Ntve" Id="F13E3BA1"/>
-        </Element>
-        <Element Type="Param" Id="A4BAA65F">
-            <ParameterDef Type="ParamDef" Library="Ntve" Id="B371ABF2"/>
-            <Preset Type="PresetValue" Library="Ntve" Id="9D6C743C"/>
-        </Element>
-        <Element Type="FunctionCall" Id="35AE3834">
-            <FunctionDef Type="FunctionDef" Library="Ntve" Id="C439C375"/>
-            <Parameter Type="Param" Library="CtEx" Id="FCDD9BE1"/>
-            <Parameter Type="Param" Library="CtEx" Id="D810A407"/>
-            <Parameter Type="Param" Library="CtEx" Id="801B0734"/>
-        </Element>
-        <Element Type="Param" Id="FCDD9BE1">
-            <ParameterDef Type="ParamDef" Library="Ntve" Id="ABB380C4"/>
-            <FunctionCall Type="FunctionCall" Library="CtEx" Id="AD6E65C2"/>
-        </Element>
-        <Element Type="FunctionCall" Id="AD6E65C2">
-            <FunctionDef Type="FunctionDef" Library="Ntve" Id="305EC1D4"/>
-        </Element>
-        <Element Type="Param" Id="D810A407">
-            <ParameterDef Type="ParamDef" Library="Ntve" Id="51567265"/>
-            <Preset Type="PresetValue" Library="Ntve" Id="1E7A4625"/>
-        </Element>
-        <Element Type="Param" Id="801B0734">
-            <ParameterDef Type="ParamDef" Library="Ntve" Id="4A15EC5F"/>
-            <Variable Type="Variable" Library="CtEx" Id="63006CB5"/>
         </Element>
         <Element Type="FunctionCall" Id="6046D011">
             <FunctionDef Type="FunctionDef" Library="Ntve" Id="00000137"/>
@@ -682,7 +676,7 @@
             <Value Type="Param" Library="CtEx" Id="3E04DF54"/>
         </Element>
         <Element Type="Param" Id="3E04DF54">
-            <Value>ChatPlus_ChatBubbles</Value>
+            <Value>ChatEx_ChatBubbles</Value>
             <ValueType Type="string"/>
         </Element>
         <Element Type="Variable" Id="D58BC09A">
@@ -753,26 +747,26 @@
         </Element>
         <Element Type="Param" Id="6AC6D556">
             <ExpressionType Type="string"/>
-            <ExpressionText>ChatPlus/Units/~A~/TextTag</ExpressionText>
+            <ExpressionText>ChatEx/Units/~A~/TextTag</ExpressionText>
             <ExpressionParam Type="Param" Library="CtEx" Id="42BED1BE"/>
         </Element>
         <Element Type="Param" Id="42BED1BE">
-            <FunctionCall Type="FunctionCall" Library="CtEx" Id="CD74CB15"/>
+            <FunctionCall Type="FunctionCall" Library="CtEx" Id="1BCD49D8"/>
             <ExpressionCode Value="A"/>
         </Element>
-        <Element Type="FunctionCall" Id="CD74CB15">
+        <Element Type="FunctionCall" Id="1BCD49D8">
             <FunctionDef Type="FunctionDef" Library="Ntve" Id="00000002"/>
-            <Parameter Type="Param" Library="CtEx" Id="BA51C43B"/>
+            <Parameter Type="Param" Library="CtEx" Id="A76BF003"/>
         </Element>
-        <Element Type="Param" Id="BA51C43B">
+        <Element Type="Param" Id="A76BF003">
             <ParameterDef Type="ParamDef" Library="Ntve" Id="00000002"/>
-            <FunctionCall Type="FunctionCall" Library="CtEx" Id="97402C4C"/>
+            <FunctionCall Type="FunctionCall" Library="CtEx" Id="B1270D9E"/>
         </Element>
-        <Element Type="FunctionCall" Id="97402C4C">
+        <Element Type="FunctionCall" Id="B1270D9E">
             <FunctionDef Type="FunctionDef" Library="Ntve" Id="AF2CDB5E"/>
-            <Parameter Type="Param" Library="CtEx" Id="3941866F"/>
+            <Parameter Type="Param" Library="CtEx" Id="EA1C11EF"/>
         </Element>
-        <Element Type="Param" Id="3941866F">
+        <Element Type="Param" Id="EA1C11EF">
             <ParameterDef Type="ParamDef" Library="Ntve" Id="B20BE351"/>
             <Parameter Type="ParamDef" Library="CtEx" Id="E13EE40F"/>
         </Element>
@@ -1711,7 +1705,7 @@
         </Element>
         <Element Type="Param" Id="FC41AB78">
             <ParameterDef Type="ParamDef" Library="Ntve" Id="AEF92396"/>
-            <Value>ChatPlusUI/LiveTypingContainer/TypingLabel</Value>
+            <Value>ChatExUI/LiveTypingContainer/TypingLabel</Value>
             <ValueType Type="string"/>
         </Element>
         <Element Type="FunctionCall" Id="3C12F5E4">
@@ -1797,7 +1791,7 @@
         </Element>
         <Element Type="Param" Id="09BA1BB4">
             <ParameterDef Type="ParamDef" Library="Ntve" Id="00000212"/>
-            <Value>ChatPlusUI/LiveTypingContainer/PlayerLabel</Value>
+            <Value>ChatExUI/LiveTypingContainer/PlayerLabel</Value>
             <ValueType Type="string"/>
         </Element>
         <Element Type="Param" Id="105DAACB">
@@ -1834,48 +1828,7 @@
             <FunctionDef Type="FunctionDef" Library="Ntve" Id="4AB42F83"/>
         </Element>
         <Element Type="Trigger" Id="CD69D2C6">
-            <Event Type="FunctionCall" Library="CtEx" Id="8C05EF8A"/>
-            <Condition Type="FunctionCall" Library="CtEx" Id="E358C80E"/>
             <Action Type="FunctionCall" Library="CtEx" Id="0954E4B8"/>
-        </Element>
-        <Element Type="FunctionCall" Id="8C05EF8A">
-            <FunctionDef Type="FunctionDef" Library="Ntve" Id="B5222B7D"/>
-            <Parameter Type="Param" Library="CtEx" Id="67AC17F1"/>
-            <Parameter Type="Param" Library="CtEx" Id="4D460E49"/>
-            <Parameter Type="Param" Library="CtEx" Id="7932F2E3"/>
-        </Element>
-        <Element Type="Param" Id="67AC17F1">
-            <ParameterDef Type="ParamDef" Library="Ntve" Id="47F2C8FB"/>
-            <Preset Type="PresetValue" Library="Ntve" Id="2999701E"/>
-        </Element>
-        <Element Type="Param" Id="4D460E49">
-            <ParameterDef Type="ParamDef" Library="Ntve" Id="01D07B8F"/>
-            <Preset Type="PresetValue" Library="Ntve" Id="F13E3BA1"/>
-        </Element>
-        <Element Type="Param" Id="7932F2E3">
-            <ParameterDef Type="ParamDef" Library="Ntve" Id="B371ABF2"/>
-            <Preset Type="PresetValue" Library="Ntve" Id="644A77F9"/>
-        </Element>
-        <Element Type="FunctionCall" Id="E358C80E">
-            <FunctionDef Type="FunctionDef" Library="Ntve" Id="C439C375"/>
-            <Parameter Type="Param" Library="CtEx" Id="0ADF10D2"/>
-            <Parameter Type="Param" Library="CtEx" Id="F2D1F9F5"/>
-            <Parameter Type="Param" Library="CtEx" Id="7B1FB0A9"/>
-        </Element>
-        <Element Type="Param" Id="0ADF10D2">
-            <ParameterDef Type="ParamDef" Library="Ntve" Id="ABB380C4"/>
-            <FunctionCall Type="FunctionCall" Library="CtEx" Id="F4A46D1C"/>
-        </Element>
-        <Element Type="FunctionCall" Id="F4A46D1C">
-            <FunctionDef Type="FunctionDef" Library="Ntve" Id="305EC1D4"/>
-        </Element>
-        <Element Type="Param" Id="F2D1F9F5">
-            <ParameterDef Type="ParamDef" Library="Ntve" Id="51567265"/>
-            <Preset Type="PresetValue" Library="Ntve" Id="1E7A4625"/>
-        </Element>
-        <Element Type="Param" Id="7B1FB0A9">
-            <ParameterDef Type="ParamDef" Library="Ntve" Id="4A15EC5F"/>
-            <Variable Type="Variable" Library="CtEx" Id="46EE58AC"/>
         </Element>
         <Element Type="FunctionCall" Id="0954E4B8">
             <FunctionDef Type="FunctionDef" Library="Ntve" Id="00000137"/>
@@ -2697,8 +2650,10 @@
             <Event Type="FunctionCall" Library="CtEx" Id="493003AB"/>
             <Action Type="FunctionCall" Library="CtEx" Id="A874141B"/>
             <Action Type="FunctionCall" Library="CtEx" Id="FC0A2A7A"/>
+            <Action Type="FunctionCall" Library="CtEx" Id="BA704A77"/>
             <Action Type="FunctionCall" Library="CtEx" Id="C6227E3A"/>
             <Action Type="FunctionCall" Library="CtEx" Id="17EBDDE4"/>
+            <Action Type="FunctionCall" Library="CtEx" Id="FAF763D4"/>
             <Action Type="FunctionCall" Library="CtEx" Id="32CE9EF7"/>
         </Element>
         <Element Type="Variable" Id="EBADF3DC">
@@ -2725,7 +2680,7 @@
         </Element>
         <Element Type="Param" Id="604BF18A">
             <ParameterDef Type="ParamDef" Library="Ntve" Id="AEF92396"/>
-            <Value>ChatPlusUI/ChatBarContainer/RecentMessagesButtonPair/PreviousMessageButton</Value>
+            <Value>ChatExUI/ChatBarContainer/RecentMessagesButtonPair/PreviousMessageButton</Value>
             <ValueType Type="string"/>
         </Element>
         <Element Type="FunctionCall" Id="FC0A2A7A">
@@ -2744,6 +2699,30 @@
         <Element Type="FunctionCall" Id="AE3D654F">
             <FunctionDef Type="FunctionDef" Library="Ntve" Id="4AB42F83"/>
         </Element>
+        <Element Type="FunctionCall" Id="BA704A77">
+            <FunctionDef Type="FunctionDef" Library="CtEx" Id="75914008"/>
+            <Parameter Type="Param" Library="CtEx" Id="09671526"/>
+            <Parameter Type="Param" Library="CtEx" Id="FC66D189"/>
+            <Parameter Type="Param" Library="CtEx" Id="0A712D84"/>
+            <Parameter Type="Param" Library="CtEx" Id="272EEDB0"/>
+        </Element>
+        <Element Type="Param" Id="09671526">
+            <ParameterDef Type="ParamDef" Library="CtEx" Id="33AC9F1C"/>
+            <ValueType Type="trigger"/>
+            <ValueElement Type="Trigger" Library="CtEx" Id="9C752EF8"/>
+        </Element>
+        <Element Type="Param" Id="FC66D189">
+            <ParameterDef Type="ParamDef" Library="CtEx" Id="C8B268B9"/>
+            <Preset Type="PresetValue" Library="Ntve" Id="2999701E"/>
+        </Element>
+        <Element Type="Param" Id="0A712D84">
+            <ParameterDef Type="ParamDef" Library="CtEx" Id="A348BFEF"/>
+            <Variable Type="Variable" Library="CtEx" Id="F32644B7"/>
+        </Element>
+        <Element Type="Param" Id="272EEDB0">
+            <ParameterDef Type="ParamDef" Library="CtEx" Id="A0B9B63B"/>
+            <Preset Type="PresetValue" Library="Ntve" Id="9D6C743C"/>
+        </Element>
         <Element Type="FunctionCall" Id="C6227E3A">
             <FunctionDef Type="FunctionDef" Library="Ntve" Id="CC29332F"/>
             <Parameter Type="Param" Library="CtEx" Id="6D667A28"/>
@@ -2755,7 +2734,7 @@
         </Element>
         <Element Type="Param" Id="75E53C97">
             <ParameterDef Type="ParamDef" Library="Ntve" Id="AEF92396"/>
-            <Value>ChatPlusUI/ChatBarContainer/RecentMessagesButtonPair/NextMessageButton</Value>
+            <Value>ChatExUI/ChatBarContainer/RecentMessagesButtonPair/NextMessageButton</Value>
             <ValueType Type="string"/>
         </Element>
         <Element Type="FunctionCall" Id="17EBDDE4">
@@ -2773,6 +2752,30 @@
         </Element>
         <Element Type="FunctionCall" Id="C317F6D5">
             <FunctionDef Type="FunctionDef" Library="Ntve" Id="4AB42F83"/>
+        </Element>
+        <Element Type="FunctionCall" Id="FAF763D4">
+            <FunctionDef Type="FunctionDef" Library="CtEx" Id="75914008"/>
+            <Parameter Type="Param" Library="CtEx" Id="ACB19DCC"/>
+            <Parameter Type="Param" Library="CtEx" Id="7700C7DA"/>
+            <Parameter Type="Param" Library="CtEx" Id="1157AC9B"/>
+            <Parameter Type="Param" Library="CtEx" Id="0C42F18C"/>
+        </Element>
+        <Element Type="Param" Id="ACB19DCC">
+            <ParameterDef Type="ParamDef" Library="CtEx" Id="33AC9F1C"/>
+            <ValueType Type="trigger"/>
+            <ValueElement Type="Trigger" Library="CtEx" Id="24185755"/>
+        </Element>
+        <Element Type="Param" Id="7700C7DA">
+            <ParameterDef Type="ParamDef" Library="CtEx" Id="C8B268B9"/>
+            <Preset Type="PresetValue" Library="Ntve" Id="2999701E"/>
+        </Element>
+        <Element Type="Param" Id="1157AC9B">
+            <ParameterDef Type="ParamDef" Library="CtEx" Id="A348BFEF"/>
+            <Variable Type="Variable" Library="CtEx" Id="B2848144"/>
+        </Element>
+        <Element Type="Param" Id="0C42F18C">
+            <ParameterDef Type="ParamDef" Library="CtEx" Id="A0B9B63B"/>
+            <Preset Type="PresetValue" Library="Ntve" Id="9D6C743C"/>
         </Element>
         <Element Type="FunctionCall" Id="32CE9EF7">
             <FunctionDef Type="FunctionDef" Library="Ntve" Id="B525B112"/>
@@ -2861,18 +2864,18 @@
         <Element Type="Param" Id="2FEDE80D">
             <ParameterDef Type="ParamDef" Library="Ntve" Id="AEF92396"/>
             <ExpressionType Type="string"/>
-            <ExpressionText>ChatPlusUI/TextSetterLabels/Label~A~</ExpressionText>
+            <ExpressionText>ChatExUI/TextSetterLabels/Label~A~</ExpressionText>
             <ExpressionParam Type="Param" Library="CtEx" Id="AE42A6EC"/>
         </Element>
         <Element Type="Param" Id="AE42A6EC">
-            <FunctionCall Type="FunctionCall" Library="CtEx" Id="78D8A3CB"/>
+            <FunctionCall Type="FunctionCall" Library="CtEx" Id="65286F67"/>
             <ExpressionCode Value="A"/>
         </Element>
-        <Element Type="FunctionCall" Id="78D8A3CB">
+        <Element Type="FunctionCall" Id="65286F67">
             <FunctionDef Type="FunctionDef" Library="Ntve" Id="00000002"/>
-            <Parameter Type="Param" Library="CtEx" Id="F9E40531"/>
+            <Parameter Type="Param" Library="CtEx" Id="47EDC874"/>
         </Element>
-        <Element Type="Param" Id="F9E40531">
+        <Element Type="Param" Id="47EDC874">
             <ParameterDef Type="ParamDef" Library="Ntve" Id="00000002"/>
             <Variable Type="Variable" Library="CtEx" Id="EBADF3DC"/>
         </Element>
@@ -2899,8 +2902,6 @@
         </Element>
         <Element Type="Trigger" Id="9C752EF8">
             <Variable Type="Variable" Library="CtEx" Id="ABE2795F"/>
-            <Event Type="FunctionCall" Library="CtEx" Id="07C78B1F"/>
-            <Condition Type="FunctionCall" Library="CtEx" Id="97BCBEA6"/>
             <Action Type="FunctionCall" Library="CtEx" Id="6BA0C4DB"/>
             <Action Type="FunctionCall" Library="CtEx" Id="6C0C4183"/>
         </Element>
@@ -2913,45 +2914,6 @@
         <Element Type="Param" Id="D9AC4616">
             <Value>0</Value>
             <ValueType Type="int"/>
-        </Element>
-        <Element Type="FunctionCall" Id="07C78B1F">
-            <FunctionDef Type="FunctionDef" Library="Ntve" Id="B5222B7D"/>
-            <Parameter Type="Param" Library="CtEx" Id="58E0AD63"/>
-            <Parameter Type="Param" Library="CtEx" Id="2128C739"/>
-            <Parameter Type="Param" Library="CtEx" Id="22FC8705"/>
-        </Element>
-        <Element Type="Param" Id="58E0AD63">
-            <ParameterDef Type="ParamDef" Library="Ntve" Id="47F2C8FB"/>
-            <Preset Type="PresetValue" Library="Ntve" Id="2999701E"/>
-        </Element>
-        <Element Type="Param" Id="2128C739">
-            <ParameterDef Type="ParamDef" Library="Ntve" Id="01D07B8F"/>
-            <Preset Type="PresetValue" Library="Ntve" Id="F13E3BA1"/>
-        </Element>
-        <Element Type="Param" Id="22FC8705">
-            <ParameterDef Type="ParamDef" Library="Ntve" Id="B371ABF2"/>
-            <Preset Type="PresetValue" Library="Ntve" Id="9D6C743C"/>
-        </Element>
-        <Element Type="FunctionCall" Id="97BCBEA6">
-            <FunctionDef Type="FunctionDef" Library="Ntve" Id="C439C375"/>
-            <Parameter Type="Param" Library="CtEx" Id="551B8454"/>
-            <Parameter Type="Param" Library="CtEx" Id="9D2BBE08"/>
-            <Parameter Type="Param" Library="CtEx" Id="7E2EAF9A"/>
-        </Element>
-        <Element Type="Param" Id="551B8454">
-            <ParameterDef Type="ParamDef" Library="Ntve" Id="ABB380C4"/>
-            <FunctionCall Type="FunctionCall" Library="CtEx" Id="551FC66E"/>
-        </Element>
-        <Element Type="FunctionCall" Id="551FC66E">
-            <FunctionDef Type="FunctionDef" Library="Ntve" Id="305EC1D4"/>
-        </Element>
-        <Element Type="Param" Id="9D2BBE08">
-            <ParameterDef Type="ParamDef" Library="Ntve" Id="51567265"/>
-            <Preset Type="PresetValue" Library="Ntve" Id="1E7A4625"/>
-        </Element>
-        <Element Type="Param" Id="7E2EAF9A">
-            <ParameterDef Type="ParamDef" Library="Ntve" Id="4A15EC5F"/>
-            <Variable Type="Variable" Library="CtEx" Id="F32644B7"/>
         </Element>
         <Element Type="FunctionCall" Id="6BA0C4DB">
             <FunctionDef Type="FunctionDef" Library="Ntve" Id="00000137"/>
@@ -3057,48 +3019,7 @@
             <FunctionDef Type="FunctionDef" Library="Ntve" Id="00000053"/>
         </Element>
         <Element Type="Trigger" Id="24185755">
-            <Event Type="FunctionCall" Library="CtEx" Id="0F0CAF81"/>
-            <Condition Type="FunctionCall" Library="CtEx" Id="4A2B4A71"/>
             <Action Type="FunctionCall" Library="CtEx" Id="3F07EB86"/>
-        </Element>
-        <Element Type="FunctionCall" Id="0F0CAF81">
-            <FunctionDef Type="FunctionDef" Library="Ntve" Id="B5222B7D"/>
-            <Parameter Type="Param" Library="CtEx" Id="CF02E45B"/>
-            <Parameter Type="Param" Library="CtEx" Id="868894A5"/>
-            <Parameter Type="Param" Library="CtEx" Id="821A18A3"/>
-        </Element>
-        <Element Type="Param" Id="CF02E45B">
-            <ParameterDef Type="ParamDef" Library="Ntve" Id="47F2C8FB"/>
-            <Preset Type="PresetValue" Library="Ntve" Id="2999701E"/>
-        </Element>
-        <Element Type="Param" Id="868894A5">
-            <ParameterDef Type="ParamDef" Library="Ntve" Id="01D07B8F"/>
-            <Preset Type="PresetValue" Library="Ntve" Id="F13E3BA1"/>
-        </Element>
-        <Element Type="Param" Id="821A18A3">
-            <ParameterDef Type="ParamDef" Library="Ntve" Id="B371ABF2"/>
-            <Preset Type="PresetValue" Library="Ntve" Id="9D6C743C"/>
-        </Element>
-        <Element Type="FunctionCall" Id="4A2B4A71">
-            <FunctionDef Type="FunctionDef" Library="Ntve" Id="C439C375"/>
-            <Parameter Type="Param" Library="CtEx" Id="E35A05C5"/>
-            <Parameter Type="Param" Library="CtEx" Id="24EB671A"/>
-            <Parameter Type="Param" Library="CtEx" Id="826CF956"/>
-        </Element>
-        <Element Type="Param" Id="E35A05C5">
-            <ParameterDef Type="ParamDef" Library="Ntve" Id="ABB380C4"/>
-            <FunctionCall Type="FunctionCall" Library="CtEx" Id="061D197C"/>
-        </Element>
-        <Element Type="FunctionCall" Id="061D197C">
-            <FunctionDef Type="FunctionDef" Library="Ntve" Id="305EC1D4"/>
-        </Element>
-        <Element Type="Param" Id="24EB671A">
-            <ParameterDef Type="ParamDef" Library="Ntve" Id="51567265"/>
-            <Preset Type="PresetValue" Library="Ntve" Id="1E7A4625"/>
-        </Element>
-        <Element Type="Param" Id="826CF956">
-            <ParameterDef Type="ParamDef" Library="Ntve" Id="4A15EC5F"/>
-            <Variable Type="Variable" Library="CtEx" Id="B2848144"/>
         </Element>
         <Element Type="FunctionCall" Id="3F07EB86">
             <FunctionDef Type="FunctionDef" Library="CtEx" Id="1231EBC6"/>
@@ -3872,6 +3793,7 @@
             <Event Type="FunctionCall" Library="CtEx" Id="64F7BF68"/>
             <Action Type="FunctionCall" Library="CtEx" Id="6B8096B9"/>
             <Action Type="FunctionCall" Library="CtEx" Id="3FF1D24D"/>
+            <Action Type="FunctionCall" Library="CtEx" Id="4069724B"/>
         </Element>
         <Element Type="FunctionCall" Id="64F7BF68">
             <FunctionDef Type="FunctionDef" Library="Ntve" Id="00000120"/>
@@ -3888,7 +3810,7 @@
         </Element>
         <Element Type="Param" Id="91D91889">
             <ParameterDef Type="ParamDef" Library="Ntve" Id="AEF92396"/>
-            <Value>ChatPlusUI/ChatBarContainer/RpgCameraButton</Value>
+            <Value>ChatExUI/ChatBarContainer/RpgCameraButton</Value>
             <ValueType Type="string"/>
         </Element>
         <Element Type="FunctionCall" Id="3FF1D24D">
@@ -3907,49 +3829,32 @@
         <Element Type="FunctionCall" Id="62CDCFB7">
             <FunctionDef Type="FunctionDef" Library="Ntve" Id="4AB42F83"/>
         </Element>
-        <Element Type="Trigger" Id="E3EAC68B">
-            <Event Type="FunctionCall" Library="CtEx" Id="69EE8470"/>
-            <Condition Type="FunctionCall" Library="CtEx" Id="FEDDA024"/>
-            <Action Type="FunctionCall" Library="CtEx" Id="1769F4CB"/>
+        <Element Type="FunctionCall" Id="4069724B">
+            <FunctionDef Type="FunctionDef" Library="CtEx" Id="75914008"/>
+            <Parameter Type="Param" Library="CtEx" Id="62B1DA42"/>
+            <Parameter Type="Param" Library="CtEx" Id="57D409ED"/>
+            <Parameter Type="Param" Library="CtEx" Id="85F9084A"/>
+            <Parameter Type="Param" Library="CtEx" Id="4814FD46"/>
         </Element>
-        <Element Type="FunctionCall" Id="69EE8470">
-            <FunctionDef Type="FunctionDef" Library="Ntve" Id="B5222B7D"/>
-            <Parameter Type="Param" Library="CtEx" Id="6DCBB940"/>
-            <Parameter Type="Param" Library="CtEx" Id="ADE844F9"/>
-            <Parameter Type="Param" Library="CtEx" Id="F2080AE7"/>
+        <Element Type="Param" Id="62B1DA42">
+            <ParameterDef Type="ParamDef" Library="CtEx" Id="33AC9F1C"/>
+            <ValueType Type="trigger"/>
+            <ValueElement Type="Trigger" Library="CtEx" Id="E3EAC68B"/>
         </Element>
-        <Element Type="Param" Id="6DCBB940">
-            <ParameterDef Type="ParamDef" Library="Ntve" Id="47F2C8FB"/>
+        <Element Type="Param" Id="57D409ED">
+            <ParameterDef Type="ParamDef" Library="CtEx" Id="C8B268B9"/>
             <Preset Type="PresetValue" Library="Ntve" Id="2999701E"/>
         </Element>
-        <Element Type="Param" Id="ADE844F9">
-            <ParameterDef Type="ParamDef" Library="Ntve" Id="01D07B8F"/>
-            <Preset Type="PresetValue" Library="Ntve" Id="F13E3BA1"/>
+        <Element Type="Param" Id="85F9084A">
+            <ParameterDef Type="ParamDef" Library="CtEx" Id="A348BFEF"/>
+            <Variable Type="Variable" Library="CtEx" Id="A4048D0E"/>
         </Element>
-        <Element Type="Param" Id="F2080AE7">
-            <ParameterDef Type="ParamDef" Library="Ntve" Id="B371ABF2"/>
+        <Element Type="Param" Id="4814FD46">
+            <ParameterDef Type="ParamDef" Library="CtEx" Id="A0B9B63B"/>
             <Preset Type="PresetValue" Library="Ntve" Id="9D6C743C"/>
         </Element>
-        <Element Type="FunctionCall" Id="FEDDA024">
-            <FunctionDef Type="FunctionDef" Library="Ntve" Id="C439C375"/>
-            <Parameter Type="Param" Library="CtEx" Id="2F6DD729"/>
-            <Parameter Type="Param" Library="CtEx" Id="5D17F871"/>
-            <Parameter Type="Param" Library="CtEx" Id="B40A49A6"/>
-        </Element>
-        <Element Type="Param" Id="2F6DD729">
-            <ParameterDef Type="ParamDef" Library="Ntve" Id="ABB380C4"/>
-            <FunctionCall Type="FunctionCall" Library="CtEx" Id="812E7D86"/>
-        </Element>
-        <Element Type="FunctionCall" Id="812E7D86">
-            <FunctionDef Type="FunctionDef" Library="Ntve" Id="305EC1D4"/>
-        </Element>
-        <Element Type="Param" Id="5D17F871">
-            <ParameterDef Type="ParamDef" Library="Ntve" Id="51567265"/>
-            <Preset Type="PresetValue" Library="Ntve" Id="1E7A4625"/>
-        </Element>
-        <Element Type="Param" Id="B40A49A6">
-            <ParameterDef Type="ParamDef" Library="Ntve" Id="4A15EC5F"/>
-            <Variable Type="Variable" Library="CtEx" Id="A4048D0E"/>
+        <Element Type="Trigger" Id="E3EAC68B">
+            <Action Type="FunctionCall" Library="CtEx" Id="1769F4CB"/>
         </Element>
         <Element Type="FunctionCall" Id="1769F4CB">
             <FunctionDef Type="FunctionDef" Library="Ntve" Id="00000137"/>
@@ -4580,6 +4485,60 @@
         <Element Type="Param" Id="D9B1C59B">
             <ParameterDef Type="ParamDef" Library="Ntve" Id="00000220"/>
             <Preset Type="PresetValue" Library="Ntve" Id="D6EA4D09"/>
+        </Element>
+        <Element Type="Category" Id="0DB5D2CA">
+            <Item Type="FunctionDef" Library="CtEx" Id="75914008"/>
+        </Element>
+        <Element Type="FunctionDef" Id="75914008">
+            <Identifier>TriggerAddEventDialogControl</Identifier>
+            <Label Type="Label" Library="Ntve" Id="00000038"/>
+            <FlagAction/>
+            <FlagNative/>
+            <Parameter Type="ParamDef" Library="CtEx" Id="33AC9F1C"/>
+            <Parameter Type="ParamDef" Library="CtEx" Id="C8B268B9"/>
+            <Parameter Type="ParamDef" Library="CtEx" Id="A348BFEF"/>
+            <Parameter Type="ParamDef" Library="CtEx" Id="A0B9B63B"/>
+        </Element>
+        <Element Type="ParamDef" Id="33AC9F1C">
+            <ParameterType>
+                <Type Value="trigger"/>
+            </ParameterType>
+            <Default Type="Param" Library="CtEx" Id="4C194395"/>
+        </Element>
+        <Element Type="Param" Id="4C194395">
+            <Preset Type="PresetValue" Library="Ntve" Id="00000542"/>
+        </Element>
+        <Element Type="ParamDef" Id="C8B268B9">
+            <Identifier>player</Identifier>
+            <ParameterType>
+                <Type Value="int"/>
+            </ParameterType>
+            <Default Type="Param" Library="CtEx" Id="50A79493"/>
+        </Element>
+        <Element Type="Param" Id="50A79493">
+            <Preset Type="PresetValue" Library="Ntve" Id="2999701E"/>
+        </Element>
+        <Element Type="ParamDef" Id="A348BFEF">
+            <Identifier>item</Identifier>
+            <ParameterType>
+                <Type Value="control"/>
+            </ParameterType>
+            <Default Type="Param" Library="CtEx" Id="B8732E8B"/>
+            <Preset Type="Preset" Library="Ntve" Id="EA421ACF"/>
+        </Element>
+        <Element Type="Param" Id="B8732E8B">
+            <Preset Type="PresetValue" Library="Ntve" Id="F13E3BA1"/>
+        </Element>
+        <Element Type="ParamDef" Id="A0B9B63B">
+            <Identifier>eventType</Identifier>
+            <ParameterType>
+                <Type Value="preset"/>
+                <TypeElement Type="Preset" Library="Ntve" Id="77B6DCD3"/>
+            </ParameterType>
+            <Default Type="Param" Library="CtEx" Id="0B65044B"/>
+        </Element>
+        <Element Type="Param" Id="0B65044B">
+            <Preset Type="PresetValue" Library="Ntve" Id="9D6C743C"/>
         </Element>
     </Library>
 </TriggerData>

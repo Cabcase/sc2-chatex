@@ -73,7 +73,8 @@ ChatEx is published as a public extension mod named `ChatEx Chat Extension` on B
 
 ## Credits
 
-Just [@Cabcase](https://github.com/Cabcase) for now, but hopefully more people soon! 
+- [@Cabcase](https://github.com/Cabcase)
+- [@RPS](https://github.com/R-P-S), improved dialog item event handling performance
 
 ## License
 
