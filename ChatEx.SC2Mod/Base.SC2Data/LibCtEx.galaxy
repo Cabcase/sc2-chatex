@@ -94,7 +94,7 @@ bool auto_libCtEx_gf_display_chat_bubble_TriggerFunc (bool testConds, bool runAc
     TextTagShowBackground(TextTagLastCreated(), true);
     TextTagAttachToUnitPoint(TextTagLastCreated(), lp_unit, "Ref_Overhead", 0, 1);
     TextTagSetAlignment(TextTagLastCreated(), c_alignCenter, c_alignBottom);
-    TextTagSetTextAlignment(TextTagLastCreated(), c_alignLeft, c_alignTop);
+    TextTagSetTextAlignment(TextTagLastCreated(), c_alignLeft, c_alignCenter);
     if ((libNtve_gf_ValueFromDataTableTextTag(true, lv_text_tag_data_table_key) != c_textTagNone)) {
         TextTagDestroy(libNtve_gf_ValueFromDataTableTextTag(true, lv_text_tag_data_table_key));
     }
@@ -204,6 +204,7 @@ void libCtEx_gf_load_recent_message (int lp_message_index, int lp_player) {
     lv_message = libCtEx_gv_recent_messages[lp_player][lp_message_index];
 
     // Implementation
+    libNtve_gf_SetDialogItemText(libCtEx_gv_chat_bar_edit_box_setter_labels[lp_player], StringToText(""), PlayerGroupSingle(lp_player));
     if ((StringSub(lv_message, 1, 1) == "@")) {
         lv_message = (" " + lv_message);
     }
@@ -321,7 +322,7 @@ bool libCtEx_gt_hookup_chat_bubbles_toggle_Func (bool testConds, bool runActions
         return true;
     }
 
-    DialogControlHookupStandard(c_triggerControlTypeButton, "ChatExUI/ChatBarContainer/ChatBubblesButton");
+    DialogControlHookupStandard(c_triggerControlTypeButton, "UIContainer/FullscreenUpperContainer/ChatBar/ChatEditBox/ChatBubblesButton");
     libCtEx_gv_chat_bubbles_toggle = DialogControlLastCreated();
     TriggerAddEventDialogControl(libCtEx_gt_toggle_chat_bubbles, c_playerAny, libCtEx_gv_chat_bubbles_toggle, c_triggerControlEventTypeClick);
     return true;
@@ -499,10 +500,10 @@ bool libCtEx_gt_init_recent_messages_Func (bool testConds, bool runActions) {
         return true;
     }
 
-    DialogControlHookupStandard(c_triggerControlTypeButton, "ChatExUI/ChatBarContainer/RecentMessagesButtonPair/PreviousMessageButton");
+    DialogControlHookupStandard(c_triggerControlTypeButton, "UIContainer/FullscreenUpperContainer/ChatBar/ChatEditBox/RecentMessagesButtonPair/PreviousMessageButton");
     libCtEx_gv_previous_message_button = DialogControlLastCreated();
     TriggerAddEventDialogControl(libCtEx_gt_load_previous_message, c_playerAny, libCtEx_gv_previous_message_button, c_triggerControlEventTypeClick);
-    DialogControlHookupStandard(c_triggerControlTypeButton, "ChatExUI/ChatBarContainer/RecentMessagesButtonPair/NextMessageButton");
+    DialogControlHookupStandard(c_triggerControlTypeButton, "UIContainer/FullscreenUpperContainer/ChatBar/ChatEditBox/RecentMessagesButtonPair/NextMessageButton");
     libCtEx_gv_next_message_button = DialogControlLastCreated();
     TriggerAddEventDialogControl(libCtEx_gt_load_next_message, c_playerAny, libCtEx_gv_next_message_button, c_triggerControlEventTypeClick);
     auto32CE9EF7_g = PlayerGroupActive();
@@ -600,7 +601,7 @@ bool libCtEx_gt_hookup_rpg_camera_toggle_Func (bool testConds, bool runActions) 
         return true;
     }
 
-    DialogControlHookupStandard(c_triggerControlTypeButton, "ChatExUI/ChatBarContainer/RpgCameraButton");
+    DialogControlHookupStandard(c_triggerControlTypeButton, "UIContainer/FullscreenUpperContainer/ChatBar/ChatEditBox/RpgCameraButton");
     libCtEx_gv_rpg_camera_toggle = DialogControlLastCreated();
     TriggerAddEventDialogControl(libCtEx_gt_toggle_rpg_camera, c_playerAny, libCtEx_gv_rpg_camera_toggle, c_triggerControlEventTypeClick);
     return true;

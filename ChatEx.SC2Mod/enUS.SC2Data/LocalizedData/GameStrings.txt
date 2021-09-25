@@ -1,13 +1,14 @@
-﻿DOCSTR_ChatEx_ChatBubbles_ButtonTooltip=Show Chat Bubbles (<h>Control + Alt + B</h>)<n/>Chat messages will be displayed in a chat bubble above the currently selected unit. Text in parentheses will be italicized in the chat bubble. 
-DOCSTR_ChatEx_CinematicMode_ButtonTooltip=Enable Cinematic Mode (<h>Control + Alt + C</h>)<n/>Makes the console UI transparent and hides the rest of the game UI. While enabled, Cinematic Mode can be temporarily disabled by hovering the mouse over the console (bottom area of the screen).
-DOCSTR_ChatEx_HideChatDisplay_ButtonTooltip=Hide the chat display and the live typing indicator. (<h>Control + Alt + H</h>)
+﻿DOCSTR_ChatEx_ChatBubbles_ButtonTooltip=Show Chat Bubbles (<h>Control + Alt + B</h>)<ul indent="1" text="•"><n/><li/>Chat messages will be displayed in a text bubble above the currently selected unit<li/>Text in parentheses will be italicized in the chat bubble</ul>
+DOCSTR_ChatEx_CinematicMode_ButtonTooltip=Enable Cinematic Mode (<h>Control + Alt + C</h>)<ul indent="1" text="•"><n/><li/>Makes the console UI transparent (console hotkeys can still be used) and hides the rest of the game UI<li/>Cinematic Mode can be temporarily disabled by hovering the mouse over the console (bottom area of the screen)
+DOCSTR_ChatEx_HideChatDisplay_ButtonTooltip=Hide the chat display and the live typing indicator (<h>Control + Alt + H</h>)
 DOCSTR_ChatEx_InfoPanel_Body=A lightweight, plug and play extension mod for a better chat experience.<n/><n/>Want to add <c val="FF99CC">Chat</c><c val="99FF99">Ex</c> to your map?<n/>All you have to do is include "<c val="80FFFF">ChatEx Chat Extension</c>" as a dependency on your map.<n/><n/>Special thanks to: <c val="80FFFF">Livaria</c>, <c val="80FF80">Formicidae</c>, <c val="FFB7DB">LuckyBuns</c>, and <c val="143BFF">Zerakim</c>.
 DOCSTR_ChatEx_InfoPanel_ButtonTooltip=Show <c val="FF99CC">Chat</c><c val="99FF99">Ex</c> Info
-DOCSTR_ChatEx_PinChatDisplay_ButtonTooltip=Pin the chat display (<h>Control + Alt + P</h>)<n/>Prevents messages in the chat display from fading away over time.
+DOCSTR_ChatEx_PinChatDisplay_ButtonTooltip=Pin the chat display (<h>Control + Alt + P</h>)<n/>Prevents messages in the chat display from fading away over time
 DOCSTR_ChatEx_RecentMessages_NextMessageButtonTooltip=Next message (<h>Control + Alt + Down</h>)
-DOCSTR_ChatEx_RecentMessages_PreviousMessageButtonTooltip=Previous message (<h>Control + Alt + Up</h>)<n/>Retrieves the last message you sent. Your 10 most recent messages are saved.
-DOCSTR_ChatEx_RpgCamera_ButtonTooltip=Enable RPG Camera (<h>Control + Alt + R</h>)<n/>Makes the camera follow the currently selected unit. Holding down the mouse wheel and moving the mouse will orbit the camera. Moving the camera temporarily stops the camera follow and selecting a unit will re-enable it.
+DOCSTR_ChatEx_RecentMessages_PreviousMessageButtonTooltip=Previous message (<h>Control + Alt + Up</h>)<n/>Retrieves the last message you've sent up to your 10th most recent messages 
+DOCSTR_ChatEx_RpgCamera_ButtonTooltip=Enable RPG Camera (<h>Control + Alt + R</h>)<ul indent="1" text="•"><n/><li/>Makes the camera follow the currently selected unit<li/>If the camera follow is broken, such as by clicking on the minimap, selecting a unit will re-enable it<li/>Holding down the mouse wheel and moving the mouse will orbit the camera around the unit
 DOCSTR_ChatEx_ScaleChatDisplay_ButtonTooltip=Click & drag to resize the chat display
 DocInfo/DescLong=A lightweight, plug and play extension mod for a better chat experience.<n/><n/>For more information and documentation visit:<n/>https://github.com/Cabcase/sc2-chatex
 DocInfo/DescShort=Any
 DocInfo/Name=ChatEx Chat Extension
+Param/Value/lib_CtEx_A1194ED5=

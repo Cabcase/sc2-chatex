@@ -20,10 +20,6 @@
 
     <Frame type="Frame" name="ConnectChatEditBoxToTextSetterLabelsTemplate">
         <StateGroup name="TextBoundTo">
-            <State name="ClearText">
-                <When type="AnimationState" BindTextTo="ClearText"/>
-                <Action type="SetProperty" Text=""/>
-            </State>
             <State name="Label1">
                 <When type="AnimationState" BindTextTo="Label1"/>
                 <Action type="SetProperty" Text="{$GameUI/ChatExUI/TextSetterLabels/Label1/@Text}"/>
@@ -152,7 +148,7 @@
         <StateGroup name="IsHovered">
             <DefaultState val="Hovered"/>
             <State name="NotHovered">
-                <When type="StateGroup" isHovered="NotHovered" frame="$ChatExUI_ChatBarContainer"/>
+                <When type="Property" hovering="false" frame="$GameUI_ChatBar/ChatEditBox"/>
             </State>
             <State name="Hovered"/>
         </StateGroup>

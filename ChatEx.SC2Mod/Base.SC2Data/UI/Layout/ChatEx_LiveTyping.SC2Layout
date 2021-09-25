@@ -7,6 +7,8 @@
     </Frame>
 
     <Frame type="Frame" name="LiveTypingContainerTemplate">
+        <VisibilityOnFade val="true"/>
+
         <Frame type="Label" name="TypingLabel">
             <Anchor side="Top" relative="$parent" pos="Min" offset="0"/>
             <Anchor side="Left" relative="$parent" pos="Min" offset="12"/>

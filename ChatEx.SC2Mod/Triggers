@@ -292,7 +292,7 @@
         </Element>
         <Element Type="Param" Id="08F3F9F7">
             <ParameterDef Type="ParamDef" Library="Ntve" Id="AEF92396"/>
-            <Value>ChatExUI/ChatBarContainer/ChatBubblesButton</Value>
+            <Value>UIContainer/FullscreenUpperContainer/ChatBar/ChatEditBox/ChatBubblesButton</Value>
             <ValueType Type="string"/>
         </Element>
         <Element Type="FunctionCall" Id="8B2A4F66">
@@ -1116,7 +1116,7 @@
         </Element>
         <Element Type="Param" Id="FF9BD219">
             <ParameterDef Type="ParamDef" Library="Ntve" Id="7348E3F8"/>
-            <Preset Type="PresetValue" Library="Ntve" Id="9BB32114"/>
+            <Preset Type="PresetValue" Library="Ntve" Id="B3FF7406"/>
         </Element>
         <Element Type="FunctionCall" Id="995FA5BF">
             <FunctionDef Type="FunctionDef" Library="Ntve" Id="00000137"/>
@@ -2680,7 +2680,7 @@
         </Element>
         <Element Type="Param" Id="604BF18A">
             <ParameterDef Type="ParamDef" Library="Ntve" Id="AEF92396"/>
-            <Value>ChatExUI/ChatBarContainer/RecentMessagesButtonPair/PreviousMessageButton</Value>
+            <Value>UIContainer/FullscreenUpperContainer/ChatBar/ChatEditBox/RecentMessagesButtonPair/PreviousMessageButton</Value>
             <ValueType Type="string"/>
         </Element>
         <Element Type="FunctionCall" Id="FC0A2A7A">
@@ -2734,7 +2734,7 @@
         </Element>
         <Element Type="Param" Id="75E53C97">
             <ParameterDef Type="ParamDef" Library="Ntve" Id="AEF92396"/>
-            <Value>ChatExUI/ChatBarContainer/RecentMessagesButtonPair/NextMessageButton</Value>
+            <Value>UIContainer/FullscreenUpperContainer/ChatBar/ChatEditBox/RecentMessagesButtonPair/NextMessageButton</Value>
             <ValueType Type="string"/>
         </Element>
         <Element Type="FunctionCall" Id="17EBDDE4">
@@ -3252,6 +3252,7 @@
             <Parameter Type="ParamDef" Library="CtEx" Id="EC8F5261"/>
             <Parameter Type="ParamDef" Library="CtEx" Id="0D9D77CD"/>
             <Variable Type="Variable" Library="CtEx" Id="946E2173"/>
+            <FunctionCall Type="FunctionCall" Library="CtEx" Id="33981051"/>
             <FunctionCall Type="FunctionCall" Library="CtEx" Id="58719A99"/>
             <FunctionCall Type="FunctionCall" Library="CtEx" Id="58CA7BB2"/>
             <FunctionCall Type="FunctionCall" Library="CtEx" Id="6C79C2D1"/>
@@ -3307,6 +3308,36 @@
         </Element>
         <Element Type="Param" Id="7D1C6A8F">
             <Parameter Type="ParamDef" Library="CtEx" Id="EC8F5261"/>
+        </Element>
+        <Element Type="FunctionCall" Id="33981051">
+            <FunctionDef Type="FunctionDef" Library="Ntve" Id="BA583993"/>
+            <Parameter Type="Param" Library="CtEx" Id="87FB079F"/>
+            <Parameter Type="Param" Library="CtEx" Id="30C04458"/>
+            <Parameter Type="Param" Library="CtEx" Id="A1194ED5"/>
+        </Element>
+        <Element Type="Param" Id="87FB079F">
+            <ParameterDef Type="ParamDef" Library="Ntve" Id="9EA7E372"/>
+            <Variable Type="Variable" Library="CtEx" Id="FAF6EF8D"/>
+            <Array Type="Param" Library="CtEx" Id="E1294BA5"/>
+        </Element>
+        <Element Type="Param" Id="E1294BA5">
+            <Parameter Type="ParamDef" Library="CtEx" Id="0D9D77CD"/>
+        </Element>
+        <Element Type="Param" Id="30C04458">
+            <ParameterDef Type="ParamDef" Library="Ntve" Id="64290A01"/>
+            <FunctionCall Type="FunctionCall" Library="CtEx" Id="98BEBD19"/>
+        </Element>
+        <Element Type="FunctionCall" Id="98BEBD19">
+            <FunctionDef Type="FunctionDef" Library="Ntve" Id="00000057"/>
+            <Parameter Type="Param" Library="CtEx" Id="16E9713D"/>
+        </Element>
+        <Element Type="Param" Id="16E9713D">
+            <ParameterDef Type="ParamDef" Library="Ntve" Id="00000094"/>
+            <Parameter Type="ParamDef" Library="CtEx" Id="0D9D77CD"/>
+        </Element>
+        <Element Type="Param" Id="A1194ED5">
+            <ParameterDef Type="ParamDef" Library="Ntve" Id="3B39C02D"/>
+            <ValueType Type="text"/>
         </Element>
         <Element Type="FunctionCall" Id="58719A99">
             <FunctionDef Type="FunctionDef" Library="Ntve" Id="00000137"/>
@@ -3810,7 +3841,7 @@
         </Element>
         <Element Type="Param" Id="91D91889">
             <ParameterDef Type="ParamDef" Library="Ntve" Id="AEF92396"/>
-            <Value>ChatExUI/ChatBarContainer/RpgCameraButton</Value>
+            <Value>UIContainer/FullscreenUpperContainer/ChatBar/ChatEditBox/RpgCameraButton</Value>
             <ValueType Type="string"/>
         </Element>
         <Element Type="FunctionCall" Id="3FF1D24D">

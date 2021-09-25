@@ -3,7 +3,7 @@
     <Frame type="Frame" name="CinematicFrameTemplate">
         <Animation name="CinematicModeReveal">
             <Event event="Reveal" action="Play"/>
-            <Event event="Normal" frame="$ChatExUI_ChatBarContainer/CinematicModeButton" action="Play"/>
+            <Event event="Normal" frame="$GameUI_ChatBar/ChatEditBox/CinematicModeButton" action="Play"/>
             <Event event="Pushed" action="Play"/>
             <Event event="OnMouseEnter" action="Play"/>
             <Event event="OnMouseEnter" frame="$parent" action="Play"/>
@@ -14,7 +14,7 @@
 
         <Animation name="CinematicModeConceal">
             <Event event="Conceal" action="Play"/>
-            <Event event="Toggled" frame="$ChatExUI_ChatBarContainer/CinematicModeButton" action="Play"/>
+            <Event event="Toggled" frame="$GameUI_ChatBar/ChatEditBox/CinematicModeButton" action="Play"/>
             <Controller type="Fade" end="Pause">
                 <Key type="Curve" time="0" value="0"/>
             </Controller>
@@ -23,8 +23,8 @@
         <StateGroup name="CinematicModeConcealWhenChatBarClosed">
             <DefaultState val="Visible"/>
             <State name="Concealed">
-                <When type="Property" toggled="true" frame="$ChatExUI_ChatBarContainer/CinematicModeButton"/>
-                <When type="Property" visible="false" frame="$ChatExUI_ChatBarContainer"/>
+                <When type="Property" toggled="true" frame="$GameUI_ChatBar/ChatEditBox/CinematicModeButton"/>
+                <When type="Property" visible="false" frame="$GameUI_ChatBar"/>
                 <Action type="SendEvent" event="Conceal"/>
             </State>
             <State name="Visible"/>

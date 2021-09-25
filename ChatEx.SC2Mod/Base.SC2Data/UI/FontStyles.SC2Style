@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <StyleFile>
-    <Style name="ChatEx_InfoPanel_Title" template="HeaderTemplate" height="32" hjustify="Center" styleflags="Bold" hotkeycolor="ff99cc" hyperlinkcolor="99ff99"/>
-    <Style name="ChatEx_InfoPanel_AuthorLabel" template="Standard16" hjustify="Right" styleflags="Italic" hotkeycolor="ff99cc"/>
-    <Style name="ChatEx_InfoPanel_Body" template="Standard16"/>
-    <Style name="ChatEx_ChatBubbles" template="International16" styleflags="" shadowoffset="0"/>
-    <Style name="ChatEx_ChatBubbles_Italic" template="International16" styleflags="Italic"  shadowoffset="0"/>
+    <Style name="ChatEx_InfoPanel_Title" template="HeaderTemplate" height="32" hjustify="Center" styleflags="Bold|Shadow" hotkeycolor="ff99cc" hyperlinkcolor="99ff99"/>
+    <Style name="ChatEx_InfoPanel_AuthorLabel" template="ChatEx_InfoPanel_Body" hjustify="Right" styleflags="Italic|Shadow" hotkeycolor="ff99cc"/>
+    <Style name="ChatEx_InfoPanel_Body" template="Standard16" shadowoffset="1"/>
+    <Style name="ChatEx_ChatBubbles" template="International16" vjustify="Middle" shadowoffset="1"/>
+    <Style name="ChatEx_ChatBubbles_Italic" template="ChatEx_ChatBubbles" styleflags="Italic|Shadow"/>
     <Style name="ChatEx_LiveTyping_TypingLabel" template="International18" vjustify="Middle" shadowoffset="1"/>
-    <Style name="ChatEx_LiveTyping_PlayerLabel" template="International18" vjustify="Middle" styleflags="Shadow | Bold" shadowoffset="1"/>
+    <Style name="ChatEx_LiveTyping_PlayerLabel" template="ChatEx_LiveTyping_TypingLabel" styleflags="Bold|Shadow"/>
 </StyleFile>

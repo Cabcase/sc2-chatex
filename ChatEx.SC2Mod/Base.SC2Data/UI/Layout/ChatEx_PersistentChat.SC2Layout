@@ -29,8 +29,8 @@
 
     <Frame type="GameMessageDisplay" name="MakeChatDisplayPersistent" template="ChatEx_DynamicChatDisplay/MakeChatDisplayDynamic">
         <Alpha val="{$ChatExUI_ChatDisplayContainer/@Alpha}"/>
+        <VisibilityOnFade val="true"/>
         <MaxMessages val="1337"/>
-        <UseTooltip val="false"/>
 
         <Frame type="Image" name="Background">
             <Anchor relative="$ChatExUI_ChatDisplayContainer"/>
@@ -49,8 +49,8 @@
         </Frame>
 
         <Animation name="ShowBorderImage">
-            <Event event="OnShown" frame="$ChatExUI_ChatBarContainer" action="DirectionForward,Play"/>
-            <Event event="OnHidden" frame="$ChatExUI_ChatBarContainer" action="DirectionReverse,Play"/>
+            <Event event="OnShown" frame="$GameUI_ChatBar" action="DirectionForward,Play"/>
+            <Event event="OnHidden" frame="$GameUI_ChatBar" action="DirectionReverse,Play"/>
             <Controller type="Fade" frame="BorderImage" end="Pause">
                 <Key type="Curve" time="0" value="0"/>
                 <Key type="Curve" time="0.1" value="67"/>
@@ -83,10 +83,9 @@
                 <When type="Property" toggled="false" frame="$ChatExUI_ChatDisplayContainer/PinChatDisplayButton"/>
                 <When type="Property" hovering="false"/>
                 <When type="Property" dragging="false"/>
-                <Action type="SetProperty" fadeDuration="3000"/>
             </State>
             <State name="Disabled">
-                <Action type="SetProperty" messageDuration="0"/>
+                <Action type="SetProperty" fadeDuration="0"/>
             </State>
         </StateGroup>
 
@@ -131,25 +130,13 @@
                 <Key type="Curve" time="0" value="255"/>
                 <Key type="Curve" time="0.1" value="0"/>
             </Controller>
-            <Controller type="Visibility" frame="$GameUI/UIContainer/FullscreenUpperContainer/ChatDisplay" end="Pause">
-                <Key type="Bool" time="0" value="true"/>
-                <Key type="Bool" time="0.1" value="false"/>
-            </Controller>
             <Controller type="Fade" frame="$ChatExUI_ChatDisplayContainer" end="Pause">
                 <Key type="Curve" time="0" value="255"/>
                 <Key type="Curve" time="0.1" value="0"/>
             </Controller>
-            <Controller type="Visibility" frame="$ChatExUI_ChatDisplayContainer" end="Pause">
-                <Key type="Bool" time="0" value="true"/>
-                <Key type="Bool" time="0.1" value="false"/>
-            </Controller>
             <Controller type="Fade" frame="$GameUI/ChatExUI/LiveTypingContainer" end="Pause">
                 <Key type="Curve" time="0" value="255"/>
                 <Key type="Curve" time="0.1" value="0"/>
-            </Controller>
-            <Controller type="Visibility" frame="$GameUI/ChatExUI/LiveTypingContainer" end="Pause">
-                <Key type="Bool" time="0" value="true"/>
-                <Key type="Bool" time="0.1" value="false"/>
             </Controller>
         </Animation>
     </Frame>

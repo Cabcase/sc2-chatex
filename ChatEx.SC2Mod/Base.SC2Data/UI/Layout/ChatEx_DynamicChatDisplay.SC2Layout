@@ -18,7 +18,8 @@
     </Frame>
 
     <Frame type="Frame" name="ChatDisplayContainerTemplate">
-        <Visible val="{$ChatExUI_ChatBarContainer/@Visible}"/>
+        <Visible val="{$GameUI_ChatBar/@Visible}"/>
+        <VisibilityOnFade val="true"/>
 
         <Frame type="Frame" name="ScaleChatDisplayButtonConstraintFrame">
             <Anchor side="Top" relative="$GameUI" pos="Min" offset="0"/>
