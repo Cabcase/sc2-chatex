@@ -1,0 +1,14 @@
+﻿DOCSTR_ChatEx_ChatBubbles_ButtonTooltip=Показывать пузырьки чата (<h>Ctrl + Alt + B</h>)<ul indent="1" text="•"><n/><li/>Сообщения чата будут отображаться в текстовом пузырьке над текущей выбранной боевой единицей<li/>Текст в круглых скобках будет выделен курсивом в пузырьке чата</ul>
+DOCSTR_ChatEx_CinematicMode_ButtonTooltip=Включение кинематографического режима (<h>Ctrl + Alt + C</h>)<ul indent="1" text="•"><n/><li/>Сделает меню консоли прозрачной (горячие клавиши консоли по-прежнему можно использовать) и скроет остальной игровой пользовательский интерфейс<li/>Кинематографический режим можно временно отключить, наведя мышь на консоль (нижняя область экрана)
+DOCSTR_ChatEx_HideChatDisplay_ButtonTooltip=Скрыть отображение чата и индикатор набора текста в реальном времени (<h>Ctrl + Alt + H</h>)
+DOCSTR_ChatEx_InfoPanel_Body=Лёгкий, простой в использовании и работающий в модулях расширений для улучшения чата.<n/><n/>Хотите добавить <c val="FF99CC">Chat</c><c val="99FF99">Ex</c> в свою карту?<n/>Всё, что вам нужно сделать, это включить «<c val="80FFFF">Расширение чата ChatEx</c>» в качестве библиотеки в вашу карту.<n/><n/>Особая благодарность: <c val="80FFFF">Livaria</c>, <c val="80FF80">Formicidae</c>, <c val="FFB7DB">LuckyBuns</c> и <c val="143BFF">Zerakim</c>.
+DOCSTR_ChatEx_InfoPanel_ButtonTooltip=Показывать информацию <c val="FF99CC">Chat</c><c val="99FF99">Ex</c>
+DOCSTR_ChatEx_PinChatDisplay_ButtonTooltip=Закрепить отображение чата (<h>Ctrl + Alt + P</h>)<n/>Предотвращает исчезновение сообщений на экране чата со временем
+DOCSTR_ChatEx_RecentMessages_NextMessageButtonTooltip=Следующее сообщение (<h>Ctrl + Alt + Стрелка вниз</h>)
+DOCSTR_ChatEx_RecentMessages_PreviousMessageButtonTooltip=Предыдущее сообщение (<h>Ctrl + Alt + Стрелка вверх</h>)<n/>Восстанавливает последнее сообщение, которое вы отправили, вплоть до 10-го последнего сообщения 
+DOCSTR_ChatEx_RpgCamera_ButtonTooltip=Включить камеру ролевой игры (<h>Ctrl + Alt + R</h>)<ul indent="1" text="•"><n/><li/>Заставляет камеру следовать за выбранной в данный момент боевой единицей<li/>Если следование камеры нарушено, например, нажатием на мини-карте, выбор боевой единицы снова включит её<li/>Удерживая колёсико мыши и перемещая мышь, камера будет двигаться по орбите вокруг единицы
+DOCSTR_ChatEx_ScaleChatDisplay_ButtonTooltip=Нажмите и потяните, чтобы изменить размер экрана чата
+DocInfo/DescLong=Лёгкий, простой в использовании и работающий в модулях расширений для улучшения чата.<n/><n/>Для получения дополнительной информации и документации посетите сайт:<n/>https://github.com/Cabcase/sc2-chatex
+DocInfo/DescShort=Любой
+DocInfo/Name=Расширение чата ChatEx
+Param/Value/lib_CtEx_A1194ED5=
